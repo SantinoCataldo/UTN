@@ -4,9 +4,9 @@
 int num1, num2;
 
 int main() {
-    printf("Realizar una función que reciba dos números enteros por parámetro por referencia y cargue sus valores el usuario dentro de la función\n\n");
+    printf("Realizar una funciï¿½n que reciba dos nï¿½meros enteros por parï¿½metro por referencia y cargue sus valores el usuario dentro de la funciï¿½n\n\n");
     cargarNumeros();
-    printf("Los números ingresados son: %d y %d\n", num1, num2);
+    printf("Los numeros ingresados son: %d y %d\n", num1, num2);
 
     return 0;
 }
