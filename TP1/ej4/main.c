@@ -4,7 +4,7 @@
 int main()
 {
     int num1;
-    printf("Desarrollar una función que muestre la tabla de multiplicar de un número entero recibido por parámetro\n\n");
+    printf("Desarrollar una funcion que muestre la tabla de multiplicar de un nï¿½mero entero recibido por parï¿½metro\n\n");
     printf ("Ingrese un numero:");
     scanf("%d", &num1);
     tablaMultiplicacion(num1);
