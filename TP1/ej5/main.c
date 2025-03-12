@@ -22,31 +22,31 @@ int main()
 
         switch(opcion){
             case 1:
-                printf ("Ingrese dos numeros:\n\n");
+                printf ("Ingrese dos numeros:\n");
                 scanf("%d", &numA);
                 scanf("%d", &numB);
-                resultado=Suma(numA, numB);
+                resultado=suma(numA, numB);
                 printf("El resultado de la suma es: %d\n", resultado);
                 break;
             case 2:
-                printf ("Ingrese dos numeros:\n\n");
+                printf ("Ingrese dos numeros:\n");
                 scanf("%d", &numA);
                 scanf("%d", &numB);
-                resultado=Resta(numA, numB);
+                resultado=resta(numA, numB);
                 printf("El resultado de la resta es: %d\n", resultado);
                 break;
             case 3:
-                printf ("Ingrese dos numeros:\n\n");
+                printf ("Ingrese dos numeros:\n");
                 scanf("%d", &numA);
                 scanf("%d", &numB);
-                resultado=Multiplicacion(numA, numB);
+                resultado=multiplicacion(numA, numB);
                 printf("El resultado de la multiplicacion es: %d\n", resultado);
                 break;
             case 4:
-                printf ("Ingrese dos numeros:\n\n");
+                printf ("Ingrese dos numeros:\n");
                 scanf("%d", &numA);
                 scanf("%d", &numB);
-                resultado=Division(numA, numB);
+                resultado=division(numA, numB);
                 printf("El resultado de la division es: %d\n", resultado);
                 break;
 
@@ -64,24 +64,24 @@ int main()
     return 0;
 }
 
-int Suma(int num1, int num2){
+int suma(int num1, int num2){
     int suma = num1+num2;
     return suma;
 }
 
-int Resta(int num1, int num2){
+int resta(int num1, int num2){
     int resta = num1-num2;
 
     return resta;
 }
 
-int Multiplicacion(int num1, int num2){
+int multiplicacion(int num1, int num2){
     int mult = num1*num2;
 
     return mult;
 }
 
-int Division(int num1, int num2){
+int division(int num1, int num2){
     int div = num1/num2;
 
     return div;

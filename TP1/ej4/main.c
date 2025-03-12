@@ -4,15 +4,15 @@
 int main()
 {
     int num1;
-    printf("Desarrollar una función que muestre la tabla de multiplicar de un número entero recibido por parámetro\n\n");
+    printf("Desarrollar una funcion que muestre la tabla de multiplicar de un nï¿½mero entero recibido por parï¿½metro\n\n");
     printf ("Ingrese un numero:");
     scanf("%d", &num1);
-    Tabla(num1);
+    tablaMultiplicacion(num1);
 
     return 0;
 }
 
-void Tabla (int num){
+void tablaMultiplicacion (int num){
     int tabla;
     for (int i = 1; i < 11; i++){
         tabla = num * i;
