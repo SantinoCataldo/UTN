@@ -4,7 +4,7 @@
 int main()
 {
     int num1, negativo;
-    printf("Realizar una función que reciba un número positivo entero por parámetro por referencia, y cambie su signo a negativo\n\n");
+    printf("Realizar una funcion que reciba un numero positivo entero por parametro por referencia, y cambie su signo a negativo\n\n");
     printf ("Ingrese un numero:");
     scanf("%d", &num1);
     negativo = numNegativo(num1);
