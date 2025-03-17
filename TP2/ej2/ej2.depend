@@ -11,3 +11,15 @@
 	<stdlib.h>
 	"pila.h"
 
+1742214718 source:c:\users\usuario\downloads\utn-main\tp2\ej2\main.c
+	<stdio.h>
+	<stdlib.h>
+	"pila.h"
+
+1742214827 c:\users\usuario\downloads\utn-main\tp2\ej2\pila.h
+	<stdio.h>
+	<malloc.h>
+
+1742130436 source:c:\users\usuario\downloads\utn-main\tp2\ej2\pila.c
+	"pila.h"
+

@@ -2,6 +2,13 @@
 #include <stdlib.h>
 #include "pila.h"
 
+Pila moverPila (Pila origen,Pila destino){
+    while(!pilavacia(&origen)){
+        apilar(&destino, desapilar(&origen));
+    }
+    return destino;
+}
+
 int main()
 {
     printf("Hacer una función que pase todos los elementos de una pila a otra\n\n");
@@ -14,20 +21,12 @@ int main()
     apilar(&pila1, 3);
     apilar(&pila1, 4);
 
-    moverPila(&pila1, &pila2);
-
-    printf("Hello world!\n");
-    return 0;
-}
-
-void moverPila (pila1, pila2){
     printf("Pila 1 antes del cambio:");
-    mostrar(pila1);
+    mostrar(&pila1);
 
-    while(!pilavacia(pila1)){
-        apilar(pila2, desapilar(pila1));
-    }
-
+    pila2 = moverPila(pila1, pila2);
     printf("Pila 2 despues del cambio:");
-    mostrar(pila2);
+    mostrar(&pila2);
+
+    return 0;
 }

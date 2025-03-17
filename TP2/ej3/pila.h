@@ -11,7 +11,6 @@ struct _Pila
 
 void inicpila(P_Pila p);
 void apilar(P_Pila p, int dato);
-void apilar(P_Pila p, int dato);
 int desapilar(P_Pila p);
 int tope(P_Pila p);
 int pilavacia(P_Pila p);
