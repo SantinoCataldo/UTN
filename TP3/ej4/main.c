@@ -1,47 +1,42 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "pila.h"
-///Hacer una función que reciba como parámetro un arreglo, la cantidad de elementos (válidos) cargados en él y una Pila.
-/// La función debe copiar los elementos del arreglo en la pila.
+///Hacer una funciï¿½n que reciba como parï¿½metro un arreglo, la cantidad de elementos (vï¿½lidos) cargados en ï¿½l y una Pila.
+/// La funciï¿½n debe copiar los elementos del arreglo en la pila.
 
-int cantCarga (array, cant);
-int main()
+int cantCarga (int *array, int maxElementos )
 {
-    printf("CREANDO ARRAY EN MAIN\n");
-    printf("---------------------\n");
-    Pila pilaCopia;
-    inicpila(&pilaCopia);
-    int cant = 5;
-    int i, array [cant];
-
-    i=cantCarga(array, cant);
-    copiarPila (array,i,&pilaCopia);
-    mostrar (&pilaCopia);
-    return 0;
-}
-
-int cantCarga (int array[], int cant )
-{
-   char opcion='s';
-    int i=0;
-    while (opcion=='s' && i < cant)
+   char control='s';
+    int i = 0;
+    while (control=='s' && i < maxElementos)
     {
         printf ("cargar un valor al arreglo...\n");
         scanf ("%d", &array[i]);
 
         printf ("desea seguir ingresando datos? ... s/n \n");
         fflush (stdin);
-        scanf ("%c",&opcion);
+        scanf ("%c",&control);
         i++;
     }
     return i;
 }
 
-void copiarPila (int array[], int i, Pila *pilaCopia)
+void copiarPila (int *array, int numArray, Pila *pilaCopia)
 {
-    for (int e=0 ; e < i; e++)
+    for (int i = 0 ; i < numArray; i++)
     {
-        apilar(pilaCopia, array[e]);
+        apilar(pilaCopia, array[i]);
     }
 }
 
+int main()
+{
+    int maxElementos = 5, carga = 0, array[maxElementos];
+    Pila pilaCopia;
+    inicpila(&pilaCopia);
+
+    carga=cantCarga(array, maxElementos);
+    copiarPila(array, carga, &pilaCopia);
+    mostrar(&pilaCopia);
+    return 0;
+}

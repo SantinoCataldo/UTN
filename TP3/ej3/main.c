@@ -1,33 +1,35 @@
 #include <stdio.h>
 #include <stdlib.h>
-///Hacer una función que reciba como parámetro un arreglo y la cantidad de elementos (válidos) cargados en él y calcule
+///Hacer una funciï¿½n que reciba como parï¿½metro un arreglo y la cantidad de elementos (vï¿½lidos) cargados en ï¿½l y calcule
 ///la suma de sus elementos.
 
-int cantCarga (array);
-int main()
-{
-    printf("CREANDO ARRAY EN MAIN\n");
-    printf("---------------------\n");
-    int i, array [10]={};
+int cantCarga (int *enteros, int maxElementos ) {
+   char control='s';
+    int suma = 0, i = 0;
 
-    i=cantCarga(array);
-    printf ("La suma total es: %d", i);
-    return 0;
-}
-
-int cantCarga (int array[] )
-{
-   char opcion='s';
-    int suma=0,i=0;
-    while (opcion=='s' && i < 10)
+    while (control=='s' && i < maxElementos)
     {
-        printf ("cargar un valor al arreglo...\n");
-        scanf ("%d", &array[i]);
-        suma+=array[i];
-        printf ("desea seguir ingresando datos? ... s/n \n");
+        printf ("Ingrese un numero %d: ", i + 1);
         fflush (stdin);
-        scanf ("%c",&opcion);
+        scanf ("%d", &enteros[i]);
+
+        printf ("Quiere continuar? (s/n): ");
+        fflush (stdin);
+        scanf (" %c", &control);
+
+        suma+=enteros[i];
         i++;
     }
     return suma;
+}
+
+
+int main()
+{
+    int maxElementos = 10;
+    int enteros[maxElementos];
+
+    int suma = cantCarga(enteros, maxElementos);
+    printf ("\nLa suma total es: %d", suma);
+    return 0;
 }

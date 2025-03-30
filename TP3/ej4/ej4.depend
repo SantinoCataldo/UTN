@@ -6,3 +6,15 @@
 	<stdio.h>
 	<malloc.h>
 
+1743370748 source:c:\users\gc\documents\utn\tp3\ej4\pila.c
+	"pila.h"
+
+1743370748 c:\users\gc\documents\utn\tp3\ej4\pila.h
+	<stdio.h>
+	<malloc.h>
+
+1743372920 source:c:\users\gc\documents\utn\tp3\ej4\main.c
+	<stdio.h>
+	<stdlib.h>
+	"pila.h"
+

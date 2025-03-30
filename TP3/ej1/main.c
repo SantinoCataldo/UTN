@@ -1,28 +1,54 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define TOTAL(x)  (sizeof(x) / sizeof((x)[0]))
+#define TOTAL_ELEMENTOS 10
 
-int pasarEnteros(int *enteros, int totalElementos){
+int contarElementos(int *arr, int capacidadMaxima) {
+    int contador = 0;
+    for (int i = 0; i < capacidadMaxima; i++) {
+        if (arr[i] != 0) {
+            contador++;
+        } else {
+            break;
+        }
+    }
+    return contador;
+}
+
+void pasarEnteros(int *enteros, int *totalElementos, int capacidadMaxima) {
     char control = 's';
-    int i = 0;
-    while(control == 's' && i < totalElementos){
-        printf("Ingese el numero %i: ", i);
-        scanf ("%d", &enteros[i]);
-        printf("desea continuar? s/n: ");
+    int i = *totalElementos;
+
+    while (control == 's' && i < capacidadMaxima) {
+        printf("Ingrese un numero %d: ", i + 1);
+        scanf("%d", &enteros[i]);
+
+        printf("¿Quiere continuar? (s/n): ");
         fflush(stdin);
-        scanf ("%c", &control);
+        scanf(" %c", &control);
+
         i++;
     }
 
-    return i;
+    *totalElementos = i;
 }
 
-int main ( )
-{
-    int totalElementos = 5;
-    int totalIngresados = 0;
-    int enteros[totalElementos];
-    totalIngresados = pasarEnteros(enteros, totalElementos);
-    printf ( "\nEl total de valores es: %d\n", totalIngresados);
+int main() {
+    int enteros[TOTAL_ELEMENTOS] = {1, 2, 3};
+    int totalElementos = contarElementos(enteros, TOTAL_ELEMENTOS);
+
+    printf("Valores iniciales en el array: ");
+    for (int i = 0; i < totalElementos; i++) {
+        printf("%d ", enteros[i]);
+    }
+    printf("\n");
+
+    pasarEnteros(enteros, &totalElementos, TOTAL_ELEMENTOS);
+
+    printf("\nValores finales en el array: ");
+    for (int i = 0; i < totalElementos; i++) {
+        printf("%d ", enteros[i]);
+    }
+    printf("\nEl total de valores ingresados es: %d\n", totalElementos);
+
     return 0;
 }

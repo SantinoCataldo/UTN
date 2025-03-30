@@ -2,11 +2,11 @@
 1740524044 source:c:\users\gc\documents\utn\tp2\ej2\pila.c
 	"pila.h"
 
-1740524044 c:\users\gc\documents\utn\tp2\ej2\pila.h
+1742427415 c:\users\gc\documents\utn\tp2\ej2\pila.h
 	<stdio.h>
 	<malloc.h>
 
-1742144505 source:c:\users\gc\documents\utn\tp2\ej2\main.c
+1742430666 source:c:\users\gc\documents\utn\tp2\ej2\main.c
 	<stdio.h>
 	<stdlib.h>
 	"pila.h"
