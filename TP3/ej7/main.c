@@ -1,36 +1,38 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-///Realizar una función que inserte un carácter en un arreglo ordenado alfabéticamente, conservando el orden.
-
-void insertarValor (char *letra){
+/// Realizar una función que inserte un carácter en un arreglo ordenado alfabéticamente, conservando el orden.
+void insertarValor(char *letra) {
     printf("Ingrese la letra a ordenar: ");
-    scanf("%c", letra);
+    scanf(" %c", letra);
 }
 
-void cargarValor(char *array, char letra){
-    int i = 0, j = 0;
-    while (array[i] != '\0' && array[i] < letra) i++;
+void cargarValor(char *array, int *tamano, char letra) {
+    int i = 0;
 
-    while (array[j] != '\n') j++;
-    while (j >= i) {
-        array[j + 1] = array[j];
-        j--;
+    while (i < *tamano && array[i] < letra) {
+        i++;
+    }
+
+    for (int j = *tamano; j > i; j--) {
+        array[j] = array[j - 1];
     }
 
     array[i] = letra;
+    (*tamano)++;
 }
 
-int main()
-{
+int main() {
     char letra;
-    char array[50]= {'a','b','c','k','l','m','n','o','p','q','s','u','y','z'};
+    char array[33] = {'a', 'b', 'c', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 's', 'u', 'y', 'z'};
+    int tamano = 14;
 
     insertarValor(&letra);
+    cargarValor(array, &tamano, letra);
 
-
-    for (int i = 0; i < 50; i++){
-        printf("n%d: %c\n", i+1,  array[i]);
+    printf("\nArreglo actualizado:\n");
+    for (int i = 0; i < tamano; i++) {
+        printf("n%d: %c\n", i + 1, array[i]);
     }
 
     return 0;

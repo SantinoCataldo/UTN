@@ -4,21 +4,12 @@
 ///Realizar una función que indique si un elemento
 ///dado se encuentra en un arreglo de caracteres.
 
-
-void cargarAleatorio(int *enteros, int maxValores){
-    int num = 0;
-    for (int i = 0; i < maxValores; i++){
-        num = rand() % 9 + 1;
-        enteros[i] = num;
-    }
-}
-
-int buscarAleatorio(int *enteros, int maxValores, int buscador){
+int buscarAleatorio(char *enteros, char buscador){
     int flag = 0;
-    for (int i = 0; i < maxValores; i++){
-        printf("n%d: %d\n", i+1,  enteros[i]);
+    for (int i = 0; i < 5; i++){
+        printf("n%d: %c\n", i+1,  enteros[i]);
     }
-    for (int i = 0; i < maxValores; i++){
+    for (int i = 0; i < 5; i++){
         if (buscador == enteros[i]){
             flag = 1;
             break;
@@ -29,16 +20,13 @@ int buscarAleatorio(int *enteros, int maxValores, int buscador){
 
 int main()
 {
-    srand(time(NULL));
-    int maxValores = 10;
-    int enteros[maxValores];
-    int buscador;
+    char caracteres[5]={'a','r','b','c','e','k'};
+    char buscador;
 
     printf("Ingrese el valor a buscar en el array: ");
-    scanf("%d", &buscador);
+    scanf("%c", &buscador);
 
-    cargarAleatorio(enteros, maxValores);
-    int flag = buscarAleatorio(enteros, maxValores, buscador);
+    int flag = buscarAleatorio(caracteres, buscador);
 
     if (flag == 1) printf("\nValor encontrado\n");
     else printf("\nValor no encontrado\n");
