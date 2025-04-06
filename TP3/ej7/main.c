@@ -24,8 +24,8 @@ void cargarValor(char *array, int *tamano, char letra) {
 
 int main() {
     char letra;
-    char array[33] = {'a', 'b', 'c', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 's', 'u', 'y', 'z'};
-    int tamano = 14;
+    char array[] = {'a', 'b', 'c', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 's', 'u', 'y', 'z'};
+    int tamano = sizeof(array);
 
     insertarValor(&letra);
     cargarValor(array, &tamano, letra);
