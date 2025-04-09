@@ -4,7 +4,7 @@
 ///que el usuario ingrese valores al mismo por teclado.
 ///La función debe cargar la matriz por completo.
 
-void cargarMatriz(int matriz[2][3], int filas, int columnas) {
+void cargarMatriz(int filas, int columnas, int matriz[filas][columnas]) {
     for (int i = 0; i < filas; i++) {
         for (int j = 0; j < columnas; j++) {
             printf("Introduce el valor para la posicion [%d][%d]: ", i, j);
@@ -13,7 +13,7 @@ void cargarMatriz(int matriz[2][3], int filas, int columnas) {
     }
 }
 
-void mostrarMatriz(int matriz[2][3], int filas, int columnas) {
+void mostrarMatriz(int filas, int columnas, int matriz[filas][columnas]) {
     printf("\nMatriz ingresada:\n");
     for (int i = 0; i < filas; i++) {
         for (int j = 0; j < columnas; j++) {
@@ -28,8 +28,8 @@ int main() {
     int columnas = 3;
     int matriz[filas][columnas];
 
-    cargarMatriz(matriz, filas, columnas);
-    mostrarMatriz(matriz, filas, columnas);
+    cargarMatriz(filas, columnas, matriz);
+    mostrarMatriz(filas, columnas, matriz);
 
     return 0;
 }

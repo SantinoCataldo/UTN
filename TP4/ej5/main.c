@@ -1,16 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-///Hacer una función tipo int que sume el contenido total de una matriz de números enteros
+///Hacer una función tipo float que calcule el promedio de una matriz de números enteros
 
-int sumarMatriz(int filas, int columnas, int matriz[filas][columnas]) {
-    int suma = 0;
+float promedioMatriz(int filas, int columnas, int matriz[filas][columnas]){
+    float prom = 0;
+    float suma = 0;
+
     for (int i = 0; i < filas; i++) {
         for (int j = 0; j < columnas; j++) {
             suma += matriz[i][j];
         }
     }
-    return suma;
+
+    prom = suma / (columnas * filas);
+
+    return prom;
 }
 
 void mostrarMatriz(int filas, int columnas, int matriz[filas][columnas]) {
@@ -23,15 +28,15 @@ void mostrarMatriz(int filas, int columnas, int matriz[filas][columnas]) {
     }
 }
 
-int main() {
-    int filas = 2;
-    int columnas = 3;
-    int matriz[2][3] = {{1,2,3},{4,6,2}};
+int main()
+{
+    int filas = 2, columnas = 3;
+    int matriz[2][3]={{1,2,4},{2,3,4}};
 
-    int suma = sumarMatriz(filas, columnas, matriz);
+    float prom = promedioMatriz(filas, columnas,matriz);
     mostrarMatriz(filas, columnas, matriz);
 
-    printf("\nLa suma es de: %d\n", suma);
+    printf("\nEl promedio es de: %f\n", prom);
 
     return 0;
 }
