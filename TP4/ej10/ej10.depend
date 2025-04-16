@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1744758798 source:c:\users\gc\documents\utn\tp4\ej10\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
