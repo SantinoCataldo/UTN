@@ -18,7 +18,7 @@ void MostrarUsuarios(int *legajos, char nombres[][LONGITUD], int *anios, int can
 int main()
 {
     int legajos[CANT_USUARIOS]={213,123,231};
-    char nombres[CANT_USUARIOS][LONGITUD]={"Raton Perez" "Julian Alvarez", "Daniel San"};
+    char nombres[CANT_USUARIOS][LONGITUD]={"Raton Perez", "Julian Alvarez", "Daniel San"};
     int anios[CANT_USUARIOS]={131, 24, 17};
     int cantidad = 3;
 
