@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
 #define CANT_USUARIOS 20
 #define LONGITUD 30
 
@@ -40,7 +42,7 @@ int main()
     if(posicion == -1){
             printf("\nTe equivocaste perri\n");
     } else {
-        printf("\nLa posicion del legajo es: %d\nk", posicion);
+        printf("\nLa posicion del legajo es: %d\n", posicion);
     }
 
     return 0;
