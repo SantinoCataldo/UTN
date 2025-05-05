@@ -7,7 +7,29 @@
 
 ///Hacer una funci�n (o varias) que ordene un arreglo de palabras por orden alfab�tico. (Por selecci�n o inserci�n, el que m�s te guste)
 
+void ordenarPalabras(char palabras[][LONGITUD], int cantidad){
+     for (int i = 0; i < cantidad - 1; i++) {
+         int min = i;
+         for (int j = i + 1; j < cantidad; j++) {
+             if (strcmp(palabras[j], palabras[min]) < 0) {
+                 min = j;
+             }
+         }
  
+         if (min != i) {
+             char temp[LONGITUD];
+             strcpy(temp, palabras[i]);
+             strcpy(palabras[i], palabras[min]);
+             strcpy(palabras[min], temp);
+         }
+     }
+ }
+ 
+ void mostrarPalabras(char palabras[][LONGITUD]) {
+     for (int i = 0; i < PALABRAS; i++) {
+         printf("%s\n", palabras[i]);
+     }
+ }
 
 int main()
 {
