@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-const char *archivo = "elementos.bin";
-
 void mostrarElementos(char nombreArchivo[30]){
     FILE *archivo = fopen(nombreArchivo, "r");
 
@@ -62,6 +60,7 @@ void cantidadElementos(char nombreArchivo[30]){
 
 int main()
 {
+    char *archivo = "elementos.bin";
     int opcion;
     do {
         printf("\t\t\t.::Menu::.\n");
