@@ -119,7 +119,7 @@ void agregarAlumno(char nombreArchivo[30]){
 
 ///7) Función que pasa a una pila los números de legajo de los alumnos mayores de edad
 
-void legajosMayoresEdad(char nombreArchivo[30], Pila* pila){
+void legajosMayoresEdadPila(char nombreArchivo[30], Pila* pila){
     FILE *archivo = fopen(nombreArchivo, "rb");
 
     if (archivo == NULL){
@@ -137,25 +137,43 @@ void legajosMayoresEdad(char nombreArchivo[30], Pila* pila){
     }
 
     fclose(archivo);
+}
 
-    if (pilavacia(pila)){
-        printf("No se encontraron alumnos mayores de edad.\n");
-    } else {
-        printf("Legajos de alumnos mayores de edad apilados correctamente.\n");
+int cantidadMayoresEdad(char nombreArchivo[30]){
+    FILE *archivo = fopen(nombreArchivo, "rb");
+    int mayores = 0;
+
+    if (archivo == NULL){
+        printf("Error al abrir el archivo\n");
+        return;
     }
+
+    stAlumno alumno;
+
+    while (fread(&alumno, sizeof(stAlumno), 1, archivo) == 1){
+        if (alumno.edad >= 18){
+            mayores++;
+        }
+    }
+
+    fclose(archivo);
+
+    return mayores;
 }
 
 int main()
 {
     char *archivo = "alumnos.bin";
-    int opcion = 0;
+    Pila pila;
+    inicpila(&pila);
+    int opcion = 0, mayores = 0;
 
     while (opcion != 5){
         printf("--- MENU DE ALUMNOS ---\n");
         printf("1. Cargar alumnos\n");
         printf("2. Mostrar alumnos\n");
-        printf("3. Legajo de alumnos mayores de edad\n");
-        printf("4. Modificar alumno\n");
+        printf("3. Agregar alumno\n");
+        printf("4. Legajo de alumnos mayores de edad (Pila)\n");
         printf("5. Salir\n");
         printf("Seleccione una opcion: ");
         scanf("%d", &opcion);
@@ -177,18 +195,26 @@ int main()
             system("cls");
             break;
         case 4:
-            Pila pila;
-            inicpila(&pila);
-            legajosMayoresEdad(archivo, &pila);
+            legajosMayoresEdadPila(archivo, &pila);
             mostrar(&pila);
             system("pause");
             system("cls");
             break;
         case 5:
-            printf("Saliendo del programa. Hasta luego!\n");
+            mayores = cantidadMayoresEdad(archivo);
+            if(mayores = 0){
+                printf("No hay alumnos mayores de edad");
+            } else {
+                printf("Cantidad de alumnos mayores de edad: %d", mayores);
+            }
+            system("pause");
+            system("cls");
+            break;
+        case 6:
+            printf("Programa finalizado\n");
             break;
         default:
-            printf("Opción no válida. Intente nuevamente.\n");
+            printf("Opcion no valida. Intente nuevamente.\n");
         }
     }
 
