@@ -193,7 +193,6 @@ void mostrarRangoEdad(char nombreArchivo[30], int edadMinima, int edadMaxima){
 
 void mostrarDatosAlumnosMayores(char nombreArchivo[30]){
     FILE *archivo = fopen(nombreArchivo, "rb");
-    int mayores = 0;
 
     if (archivo == NULL){
         printf("Error al abrir el archivo\n");
@@ -215,12 +214,40 @@ void mostrarDatosAlumnosMayores(char nombreArchivo[30]){
     fclose(archivo);
 }
 
+///11) Crear una función que retorne la cantidad de alumnos que cursan un determinado año. El año buscado se pasa por parámetro.
+
+void mostrarAlumnosPorAnio(char nombreArchivo[30], int cursada){
+    FILE *archivo = fopen(nombreArchivo, "rb");
+
+    printf("Ingresar anio de cursada: ");
+    scanf("%d", &cursada);
+
+    if (archivo == NULL){
+        printf("Error al abrir el archivo\n");
+        return;
+    }
+
+     stAlumno alumno;
+
+    while (fread(&alumno, sizeof(stAlumno), 1, archivo) == 1){
+        if (alumno.anio == cursada){
+            printf("-------------------------\n");
+            printf("Legajo: %d\n", alumno.legajo);
+            printf("Nombre Completo: %s\n", alumno.nombreYapellido);
+            printf("Edad: %d\n", alumno.edad);
+            printf("Anio: %d\n", alumno.anio);
+        }
+    }
+
+    fclose(archivo);
+}
+
 int main()
 {
     char *archivo = "alumnos.bin";
     Pila pila;
     inicpila(&pila);
-    int opcion = 0, mayores = 0, edadMinima, edadMaxima;
+    int opcion = 0, mayores = 0, edadMinima, edadMaxima, cursada;
 
     while (opcion != 5){
         printf("--- MENU DE ALUMNOS ---\n");
@@ -230,8 +257,9 @@ int main()
         printf("4. Legajo de alumnos mayores de edad (Pila)\n");
         printf("5. Mostar cantidad de alumnos mayores de 18\n");
         printf("6. Mostrar alumnos entre un rango de edad\n");
-        printf("7. Mostar datos de alumnos mayores a 18\n");
-        printf("8. Salir\n");
+        printf("7. Mostar datos de alumnos mayores de edad\n");
+        printf("8. Mostar alumnos de un año especifico\n");
+        printf("9. Salir\n");
         printf("Seleccione una opcion: ");
         scanf("%d", &opcion);
 
@@ -283,6 +311,15 @@ int main()
             mostrarDatosAlumnosMayores(archivo);
             system("pause");
             system("cls");
+            break;
+        case 8:
+            system("cls");
+            mostrarAlumnosPorAnio(archivo, cursada);
+            system("pause");
+            system("cls");
+            break;
+         case 9:
+            printf("Programa finalizado\n");
             break;
         default:
             printf("Opcion no valida. Intente nuevamente.\n");
