@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1747224919 source:c:\users\usuario\downloads\utn-main\tp7\restodeej\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"pila.h"
+
+1747152778 c:\users\usuario\downloads\utn-main\tp7\restodeej\pila.h
+	<stdio.h>
+	<malloc.h>
+
+1747152778 source:c:\users\usuario\downloads\utn-main\tp7\restodeej\pila.c
+	"pila.h"
+
