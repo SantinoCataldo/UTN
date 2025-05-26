@@ -12,3 +12,16 @@
 1747152778 source:c:\users\usuario\downloads\utn-main\tp7\restodeej\pila.c
 	"pila.h"
 
+1748217013 source:c:\users\gc\documents\utn\tp7\restodeej\pila.c
+	"pila.h"
+
+1748217013 c:\users\gc\documents\utn\tp7\restodeej\pila.h
+	<stdio.h>
+	<malloc.h>
+
+1748216849 source:c:\users\gc\documents\utn\tp7\restodeej\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"pila.h"
+

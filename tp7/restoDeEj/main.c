@@ -30,7 +30,7 @@ int legajoExiste(FILE *archivo, int legajo){
     return 0;
 }
 
-///4) Función que cargue un archivo de alumnos, verifica si el archivo ya está creado previamente
+///4) Funciï¿½n que cargue un archivo de alumnos, verifica si el archivo ya estï¿½ creado previamente
 
 void cargarAlumnos(char nombreArchivo[30]){
     FILE *archivo;
@@ -67,7 +67,7 @@ void cargarAlumnos(char nombreArchivo[30]){
     fclose(archivo);
 }
 
-///5)Función que muestre todos los alumnos del archivo
+///5)Funciï¿½n que muestre todos los alumnos del archivo
 
 void mostrarAlumnos(char nombreArchivo[30]){
     FILE *archivo = fopen(nombreArchivo, "rb");
@@ -89,7 +89,7 @@ void mostrarAlumnos(char nombreArchivo[30]){
     fclose(archivo);
 }
 
-///6) Función que permite agregar un elemento al final del archivo
+///6) Funciï¿½n que permite agregar un elemento al final del archivo
 
 void agregarAlumno(char nombreArchivo[30]){
     FILE *archivo = fopen(nombreArchivo, "ab");
@@ -117,7 +117,7 @@ void agregarAlumno(char nombreArchivo[30]){
     printf("Alumno agregado exitosamente.\n");
 }
 
-///7) Función que pasa a una pila los números de legajo de los alumnos mayores de edad
+///7) Funciï¿½n que pasa a una pila los nï¿½meros de legajo de los alumnos mayores de edad
 
 void legajosMayoresEdadPila(char nombreArchivo[30], Pila* pila){
     FILE *archivo = fopen(nombreArchivo, "rb");
@@ -137,7 +137,7 @@ void legajosMayoresEdadPila(char nombreArchivo[30], Pila* pila){
 
     fclose(archivo);
 }
-///8) Dado un archivo de alumnos, hacer una función que cuente la cantidad de alumnos mayores a edad específica que se envía por parámetro
+///8) Dado un archivo de alumnos, hacer una funciï¿½n que cuente la cantidad de alumnos mayores a edad especï¿½fica que se envï¿½a por parï¿½metro
 
 int cantidadMayoresEdad(char nombreArchivo[30]){
     FILE *archivo = fopen(nombreArchivo, "rb");
@@ -145,7 +145,7 @@ int cantidadMayoresEdad(char nombreArchivo[30]){
 
     if (archivo == NULL){
         printf("Error al abrir el archivo\n");
-        return;
+        return 0;
     }
 
     stAlumno alumno;
@@ -161,7 +161,7 @@ int cantidadMayoresEdad(char nombreArchivo[30]){
     return mayores;
 }
 
-///9) Dado un archivo de alumnos, mostrar por pantalla el nombre de todos los alumnos entre un rango de edades específico (por ejemplo, entre 17 y 25 años). Dicho rango debe recibirse por parámetro. Modularizar
+///9) Dado un archivo de alumnos, mostrar por pantalla el nombre de todos los alumnos entre un rango de edades especï¿½fico (por ejemplo, entre 17 y 25 aï¿½os). Dicho rango debe recibirse por parï¿½metro. Modularizar
 
 void mostrarRangoEdad(char nombreArchivo[30], int edadMinima, int edadMaxima){
     FILE *archivo = fopen(nombreArchivo, "rb");
@@ -170,11 +170,6 @@ void mostrarRangoEdad(char nombreArchivo[30], int edadMinima, int edadMaxima){
         printf("Error al abrir el archivo\n");
         return;
     }
-
-    printf("Ingrese el Rango de edad del alumno\n\nIngresar edad minima: ");
-    scanf("%d", &edadMinima);
-    printf("Ingresar edad maxima: ");
-    scanf("%d", &edadMaxima);
 
     stAlumno alumno;
 
@@ -214,13 +209,10 @@ void mostrarDatosAlumnosMayores(char nombreArchivo[30]){
     fclose(archivo);
 }
 
-///11) Crear una función que retorne la cantidad de alumnos que cursan un determinado año. El año buscado se pasa por parámetro.
+///11) Crear una funciï¿½n que retorne la cantidad de alumnos que cursan un determinado aï¿½o. El aï¿½o buscado se pasa por parï¿½metro.
 
 void mostrarAlumnosPorAnio(char nombreArchivo[30], int cursada){
     FILE *archivo = fopen(nombreArchivo, "rb");
-
-    printf("Ingresar anio de cursada: ");
-    scanf("%d", &cursada);
 
     if (archivo == NULL){
         printf("Error al abrir el archivo\n");
@@ -247,9 +239,9 @@ int main()
     char *archivo = "alumnos.bin";
     Pila pila;
     inicpila(&pila);
-    int opcion = 0, mayores = 0, edadMinima, edadMaxima, cursada;
+    int opcion = 0, mayores = 0, edadMinima = 0, edadMaxima = 0, cursada = 0;
 
-    while (opcion != 5){
+    while (opcion != 9){
         printf("--- MENU DE ALUMNOS ---\n");
         printf("1. Cargar alumnos\n");
         printf("2. Mostrar alumnos\n");
@@ -258,7 +250,7 @@ int main()
         printf("5. Mostar cantidad de alumnos mayores de 18\n");
         printf("6. Mostrar alumnos entre un rango de edad\n");
         printf("7. Mostar datos de alumnos mayores de edad\n");
-        printf("8. Mostar alumnos de un año especifico\n");
+        printf("8. Mostar alumnos de un aï¿½o especifico\n");
         printf("9. Salir\n");
         printf("Seleccione una opcion: ");
         scanf("%d", &opcion);
@@ -302,6 +294,10 @@ int main()
             break;
         case 6:
             system("cls");
+            printf("Ingrese el rango de edad del alumno\n\nIngresar edad minima: ");
+            scanf("%d", &edadMinima);
+            printf("Ingresar edad maxima: ");
+            scanf("%d", &edadMaxima);
             mostrarRangoEdad(archivo, edadMinima, edadMaxima);
             system("pause");
             system("cls");
@@ -314,6 +310,8 @@ int main()
             break;
         case 8:
             system("cls");
+            printf("Ingresar anio de cursada: ");
+            scanf("%d", &cursada);
             mostrarAlumnosPorAnio(archivo, cursada);
             system("pause");
             system("cls");
