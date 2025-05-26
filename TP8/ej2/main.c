@@ -1,18 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Función para contar la cantidad de números pares en un array
+// Función para contar la cantidad de numeros pares en un array
 int contarPares(int arr[], int tam) {
-    int count = 0;
+    int contador = 0;
     for (int i = 0; i < tam; i++) {
         if (arr[i] % 2 == 0) {
-            count++;
+            contador++;
         }
     }
-    return count;
+    return contador;
 }
 
-// a) Función que copia los elementos pares de un array a otro (array destino ya creado)
+// a) Funcion que copia los elementos pares de un array a otro (array destino ya creado)
 void copiarPares(int arrOrigen[], int tam, int arrDestino[]) {
     int j = 0;
     for (int i = 0; i < tam; i++) {
@@ -22,7 +22,7 @@ void copiarPares(int arrOrigen[], int tam, int arrDestino[]) {
     }
 }
 
-// b) Función que crea y retorna un array con elementos pares
+// b) Funcion que crea y retorna un array con elementos pares
 int* crearYCopiarPares(int arrOrigen[], int tam, int* tamPares) {
     *tamPares = contarPares(arrOrigen, tam);
     int* arrPares = (int*)malloc((*tamPares) * sizeof(int));
@@ -42,7 +42,7 @@ int* crearYCopiarPares(int arrOrigen[], int tam, int* tamPares) {
     return arrPares;
 }
 
-// c) Función que crea y asigna un array con elementos pares usando puntero doble
+// c) Funcion que crea y asigna un array con elementos pares usando puntero doble
 void CopiarParesPunteroDoble(int arrOrigen[], int tam, int** arrDestino, int* tamPares) {
     *tamPares = contarPares(arrOrigen, tam);
     *arrDestino = (int*)malloc((*tamPares) * sizeof(int));
