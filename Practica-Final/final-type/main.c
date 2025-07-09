@@ -18,9 +18,10 @@ Libro* filtrarPorCategoria(char *nombreArchivo, int *cantidadFiltrados, char *ca
 void mostrarArreglo(Libro *arreglo, int cantidadFiltrados);
 Libro buscarMasAntiguo(Libro *arreglo, int cantidadFiltrados);
 int contarDisponibles(Libro *filtrados, int pos, int cantidadFiltrados);
+int buscarPorCodigo(Libro *filtrados, int pos, int cantidadFiltrados, int codigoBuscado);
 
 /*
- * 8. Hacer una funci�n main que ejecute todas las funciones anteriores y demuestre
+ * 8. Hacer una funcion main que ejecute todas las funciones anteriores y demuestre
  *    su correcto funcionamiento. Crear las variables que sean necesarias e invocar
  *    a las funciones como corresponde en cada caso.
  *    (Mostrar por pantalla todos los resultados, el archivo y el arreglo)
@@ -38,41 +39,41 @@ int main()
     // 2. Mostrar todos los libros cargados en el archivo
     mostrarArchivo(nombreArchivo);
 
-    // 3. Solicitar al usuario una categor�a para filtrar libros
+    // 3. Solicitar al usuario una categoria para filtrar libros
     char *categoria = elegirCategoria();
 
-    // 3. Filtrar los libros de esa categor�a desde el archivo al arreglo din�mico
+    // 3. Filtrar los libros de esa categoria desde el archivo al arreglo dinamico
     filtrados = filtrarPorCategoria(nombreArchivo,  &cantidadFiltrados, categoria);
 
-    // 3. Verificar si se encontraron libros de esa categor�a
+    // 3. Verificar si se encontraron libros de esa categoria
    if (filtrados == NULL || cantidadFiltrados == 0) {
-        printf("No se encontraron libros en la categor�a '%s'.\n", categoria);
+        printf("No se encontraron libros en la categoria '%s'.\n", categoria);
     } else {
-        printf("\nSe encontraron %d libros en la categor�a '%s':\n", cantidadFiltrados, categoria);
+        printf("\nSe encontraron %d libros en la categoria '%s':\n", cantidadFiltrados, categoria);
         // 4. Mostrar los libros filtrados
         mostrarArreglo(filtrados, cantidadFiltrados);
     }
 
-    // 5. Buscar el libro m�s antiguo entre los filtrados
+    // 5. Buscar el libro mas antiguo entre los filtrados
     Libro antiguo = buscarMasAntiguo(filtrados, cantidadFiltrados);
-    printf("\n=== Libro m�s antiguo ===\n");
+    printf("\n=== Libro mas antiguo ===\n");
     printf("Titulo: %s | Anio: %d\n", antiguo.titulo, antiguo.anio);
 
-    // 6. Contar cu�ntos libros filtrados est�n disponibles (usando recursividad)
+    // 6. Contar cuantos libros filtrados estan disponibles (usando recursividad)
     int disponibles = contarDisponibles(filtrados, 0, cantidadFiltrados);
-    printf("\nLibros disponibles para pr�stamo: %d\n", disponibles);
+    printf("\nLibros disponibles para prestamo: %d\n", disponibles);
 
-    // 7. Solicitar al usuario un c�digo de libro para buscar
+    // 7. Solicitar al usuario un codigo de libro para buscar
     int codigoBuscado;
-    printf("\nIngrese c�digo de libro a buscar: ");
+    printf("\nIngrese codigo de libro a buscar: ");
     scanf("%d", &codigoBuscado);
 
-    // 7. Buscar el c�digo en el arreglo (usando recursividad)
+    // 7. Buscar el codigo en el arreglo (usando recursividad)
     int pos = buscarPorCodigo(filtrados, 0, cantidadFiltrados, codigoBuscado);
     if (pos == -1) {
-        printf("No se encontr� un libro con el c�digo %d.\n", codigoBuscado);
+        printf("No se encontro un libro con el codigo %d.\n", codigoBuscado);
     } else {
-        printf("Libro encontrado en la posici�n %d: %s\n", pos, filtrados[pos].titulo);
+        printf("Libro encontrado en la posicion %d: %s\n", pos, filtrados[pos].titulo);
     }
 
     free(filtrados);
@@ -131,16 +132,16 @@ void cargarLibros(char *nombreArchivo){
                 break;
         }
 
-        printf("�Est� disponible? (1 = s�, 0 = no): ");
+        printf("Esta disponible? (1 = si, 0 = no): ");
         scanf("%d", &libro.disponible);
 
-        printf("Ingrese anio de publicaci�n: ");
+        printf("Ingrese ano de publicacion: ");
         scanf("%d", &libro.anio);
         i++;
 
         fwrite(&libro, sizeof(Libro), 1, archivo);
 
-        printf("�Desea cargar otro libro? (s/n): ");
+        printf("Desea cargar otro libro? (s/n): ");
         getchar();
         scanf("%c", &continuar);
         system("cls");
@@ -176,8 +177,8 @@ void mostrarArchivo(char *nombreArchivo){
 }
 
 /*
-3. Hacer una funci�n que copie del archivo a un ARREGLO DINAMICO del tama�o justo
-   �nicamente los libros que pertenezcan a la categor�a elegida por el usuario
+3. Hacer una funcion que copie del archivo a un ARREGLO DINAMICO del tamano justo
+   unicamente los libros que pertenezcan a la categoria elegida por el usuario
    del sistema (usar el campo "categoria": ficcion, ciencia, historia, arte)
 */
 
@@ -251,8 +252,8 @@ void mostrarArreglo(Libro *arreglo, int cantidadFiltrados) {
 }
 
 /*
-5. Hacer una funci�n que busque en el arreglo del ejercicio 3 el libro
-   con el a�o de publicaci�n m�s antiguo.
+5. Hacer una funcion que busque en el arreglo del ejercicio 3 el libro
+   con el ano de publicacion mas antiguo.
 */
 
 Libro buscarMasAntiguo(Libro *arreglo, int cantidadFiltrados) {
@@ -266,9 +267,9 @@ Libro buscarMasAntiguo(Libro *arreglo, int cantidadFiltrados) {
 }
 
 /*
-6. Hacer una funci�n RECURSIVA que cuente cu�ntos libros del arreglo del ejercicio 3
-   est�n disponibles para pr�stamo (campo disponible = 1).
-   La funci�n debe recorrer el arreglo de forma recursiva.
+6. Hacer una funcion RECURSIVA que cuente cuantos libros del arreglo del ejercicio 3
+   estan disponibles para prestamo (campo disponible = 1).
+   La funcion debe recorrer el arreglo de forma recursiva.
 */
 
 int contarDisponibles(Libro *filtrados, int pos, int cantidadFiltrados) {
@@ -278,9 +279,9 @@ int contarDisponibles(Libro *filtrados, int pos, int cantidadFiltrados) {
 }
 
 /*
-7. Hacer una funci�n RECURSIVA que busque en el arreglo del ejercicio 3 si existe
-   un libro con un c�digo espec�fico ingresado por el usuario.
-   La funci�n debe retornar la posici�n del libro si lo encuentra, o -1 si no existe.
+7. Hacer una funcion RECURSIVA que busque en el arreglo del ejercicio 3 si existe
+   un libro con un codigo especifico ingresado por el usuario.
+   La funcion debe retornar la posicion del libro si lo encuentra, o -1 si no existe.
    Debe usar recursividad para recorrer el arreglo.
 */
 
