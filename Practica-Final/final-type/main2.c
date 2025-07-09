@@ -1,74 +1,101 @@
-int factorial(int n) {
-    if (n <= 1)
+int calcularFactorial(int numero) {
+    if (numero <= 1)
         return 1;
-    return n * factorial(n - 1);
+    return numero * calcularFactorial(numero - 1);
 }
 
-int potencia(int base, int exponente) {
+int calcularPotencia(int base, int exponente) {
     if (exponente == 0)
         return 1;
-    return base * potencia(base, exponente - 1);
+    return base * calcularPotencia(base, exponente - 1);
 }
 
-void mostrarArreglo(int arr[], int n, int i) {
-    if (i >= n)
+void mostrarArreglo(int arreglo[], int cantidadElementos, int posicionActual) {
+    if (posicionActual >= cantidadElementos)
         return;
-    printf("%d ", arr[i]);
-    mostrarArreglo(arr, n, i + 1);
+    printf("%d ", arreglo[posicionActual]);
+    mostrarArreglo(arreglo, cantidadElementos, posicionActual + 1);
 }
 
-void mostrarInverso(int arr[], int n, int i) {
-    if (i >= n)
+void mostrarArregloInverso(int arreglo[], int cantidadElementos, int posicionActual) {
+    if (posicionActual >= cantidadElementos)
         return;
-    mostrarInverso(arr, n, i + 1);
-    printf("%d ", arr[i]);
+    mostrarArregloInverso(arreglo, cantidadElementos, posicionActual + 1);
+    printf("%d ", arreglo[posicionActual]);
 }
 
-int esCapicua(int arr[], int inicio, int fin) {
+
+int esArregloCapicua(int arreglo[], int inicio, int fin) {
     if (inicio >= fin)
         return 1;
-    if (arr[inicio] != arr[fin])
+    if (arreglo[inicio] != arreglo[fin])
         return 0;
-    return esCapicua(arr, inicio + 1, fin - 1);
+    return esArregloCapicua(arreglo, inicio + 1, fin - 1);
 }
 
-int sumaArreglo(int arr[], int n) {
-    if (n == 0)
+int sumarElementosArreglo(int arreglo[], int cantidadElementos) {
+    if (cantidadElementos == 0)
         return 0;
-    return arr[n - 1] + sumaArreglo(arr, n - 1);
+    return arreglo[cantidadElementos - 1] + sumarElementosArreglo(arreglo, cantidadElementos - 1);
 }
 
-int menorElemento(int arr[], int n) {
-    if (n == 1)
-        return arr[0];
-    int menor = menorElemento(arr, n - 1);
-    return (arr[n - 1] < menor) ? arr[n - 1] : menor;
+int buscarMenorEnArreglo(int arreglo[], int cantidadElementos) {
+    if (cantidadElementos == 1)
+        return arreglo[0];
+    int menorHastaAhora = buscarMenorEnArreglo(arreglo, cantidadElementos - 1);
+    if (arreglo[cantidadElementos - 1] < menorHastaAhora)
+        return arreglo[cantidadElementos - 1];
+    return menorHastaAhora;
 }
 
-int menorArchivo(FILE *f) {
-    int num;
-    if (fread(&num, sizeof(int), 1, f) != 1)
+
+#include <limits.h>
+
+int buscarMenorEnArchivo(char *archivo) {
+    int numeroActual;
+    if (fread(&numeroActual, sizeof(int), 1, archivo) != 1)
         return INT_MAX;
-    int menorSig = menorArchivo(f);
-    return (num < menorSig) ? num : menorSig;
+    int menorDelResto = buscarMenorEnArchivo(archivo);
+    return (numeroActual < menorDelResto) ? numeroActual : menorDelResto;
 }
 
-void invertirArreglo(int arr[], int i, int j) {
-    if (i >= j) return;
-    int temp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = temp;
-    invertirArreglo(arr, i + 1, j - 1);
+void invertirArregloRecursivamente(int arreglo[], int izquierda, int derecha) {
+    if (izquierda >= derecha)
+        return;
+    int auxiliar = arreglo[izquierda];
+    arreglo[izquierda] = arreglo[derecha];
+    arreglo[derecha] = auxiliar;
+    invertirArregloRecursivamente(arreglo, izquierda + 1, derecha - 1);
 }
 
-   fseek(archivo, 0, SEEK_END);
+int contieneElemento(int arreglo[], int cantidadElementos, int numeroBuscado) {
+    if (cantidadElementos == 0)
+        return 0;
+    if (arreglo[cantidadElementos - 1] == numeroBuscado)
+        return 1;
+    return contieneElemento(arreglo, cantidadElementos - 1, numeroBuscado);
+}
 
-    // Obtener la posición actual (es decir, el tamaño en bytes del archivo)
-    long tamanio = ftell(f);
+int contieneElementoEnOrdenado(int arreglo[], int posicionInicial, int posicionFinal, int numeroBuscado) {
+    if (posicionInicial > posicionFinal)
+        return 0;
+    int posicionMedia = (posicionInicial + posicionFinal) / 2;
+    if (arreglo[posicionMedia] == numeroBuscado)
+        return 1;
+    if (numeroBuscado < arreglo[posicionMedia])
+        return contieneElementoEnOrdenado(arreglo, posicionInicial, posicionMedia - 1, numeroBuscado);
+    else
+        return contieneElementoEnOrdenado(arreglo, posicionMedia + 1, posicionFinal, numeroBuscado);
+}
 
-    // Calcular cuántos enteros hay
-    int cantidad = tamanio / sizeof(int);
+fseek(archivo, 0, SEEK_END);
 
-    printf("El archivo contiene %d números enteros.\n", cantidad);
+// Obtener la posición actual (es decir, el tamaño en bytes del archivo)
+long tamanio = ftell(f);
 
-    fclose(archivo);
+// Calcular cuántos enteros hay
+int cantidad = tamanio / sizeof(int);
+
+printf("El archivo contiene %d números enteros.\n", cantidad);
+
+fclose(archivo);
