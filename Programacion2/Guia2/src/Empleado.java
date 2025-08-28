@@ -1,11 +1,17 @@
-abstract  class Empleado {
-    String nombre;
+public class Empleado {
+    private String nombre;
 
-    public  Empleado(String nombre) {
+    public Empleado(String nombre) {
         this.nombre = nombre;
     }
 
-    abstract double calcularPago();
+    public String getNombre() {
+        return nombre;
+    }
+
+    double calcularPago() {
+        return 0;
+    }
 }
 
 class EmpleadoTiempoCompleto extends Empleado {
@@ -16,7 +22,7 @@ class EmpleadoTiempoCompleto extends Empleado {
         this.salarioMensual = salarioMensual;
     }
 
-    double calcularPago() {
+    public double calcularPago() {
         return salarioMensual;
     }
 }
@@ -31,7 +37,7 @@ class EmpleadoPorHoras extends Empleado {
         this.tarifaPorHora = tarifaPorHora;
     }
 
-    double calcularPago() {
+    public double calcularPago() {
         return horasTrabajadas * tarifaPorHora;
     }
 }
@@ -46,7 +52,7 @@ class EmpleadoContratista extends Empleado {
         this.tarifaPorProyecto = tarifaPorProyecto;
     }
 
-    double calcularPago() {
+    public double calcularPago() {
         return horasTrabajadas * tarifaPorProyecto;
     }
 }
