@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1744028944 source:c:\users\usuario\downloads\tp4\ej1\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1744200005 source:c:\users\usuario\downloads\ej1\main.c
+	<stdio.h>
+	<stdlib.h>
+
