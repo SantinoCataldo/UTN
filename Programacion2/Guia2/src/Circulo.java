@@ -20,6 +20,12 @@ public class Circulo {
     public double getArea() {
         return Math.PI * radio * radio;
     }
+
+    public void mostrarDatos() {
+        System.out.println("Radio: " + radio);
+        System.out.println("Color: " + color);
+        System.out.println("Area: " + getArea());
+    }
 }
 
 class Cilindro extends Circulo {
@@ -35,10 +41,24 @@ class Cilindro extends Circulo {
     }
 
     public double getVolumen() {
-        return getArea() * altura;
+        return super.getArea() * altura;
     }
 
     public double getAltura() {
         return altura;
+    }
+
+    public double getArea() {
+        return 2 * Math.PI * getRadio() * altura + 2 * super.getArea();
+    }
+
+    public void mostrarDatos() {
+        System.out.println("----------- Datos del Cilindro -----------");
+        System.out.println("Radio: " + getRadio());
+        System.out.println("Color: " + getColor());
+        System.out.println("Area (circulo): " + super.getArea());
+        System.out.println("Area (circunferencia): " + getArea());
+        System.out.println("Altura: " + altura);
+        System.out.println("Volumen: " + getVolumen());
     }
 }
