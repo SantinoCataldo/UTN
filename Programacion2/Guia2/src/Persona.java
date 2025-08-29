@@ -1,4 +1,4 @@
-public class Persona {
+public abstract class Persona {
     private String nombre;
     private String apellido;
     private String gmail;
@@ -13,13 +13,27 @@ public class Persona {
         this.dni = dni;
     }
 
-    public void mostrarDatos() {
-        System.out.println("Nombre: " + nombre);
-        System.out.println("Apellido: " + apellido);
-        System.out.println("Gmail: " + gmail);
-        System.out.println("Direccion: " + direccion);
-        System.out.println("DNI: " + dni);
+    public String getNombre() {
+        return nombre;
     }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public String getGmail() {
+        return gmail;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public int getDni() {
+        return dni;
+    }
+
+    public abstract void mostrarDatos();
 }
 
 class Estudiante extends Persona {
@@ -39,7 +53,11 @@ class Estudiante extends Persona {
     }
 
     public void mostrarDatos() {
-        super.mostrarDatos();
+        System.out.println("Nombre: " + getNombre());
+        System.out.println("Apellido: " + getApellido());
+        System.out.println("Gmail: " + getGmail());
+        System.out.println("Direccion: " + getDireccion());
+        System.out.println("DNI: " + getDni());
         System.out.println("Cuota Mensual: " + cuotaMensual);
         System.out.println("Año de Ingreso: " + anioIngreso);
         System.out.println("Carrera: " + carrera);
@@ -58,7 +76,6 @@ class Staff extends Persona {
     }
 
     public void mostrarDatos() {
-        super.mostrarDatos();
         System.out.println("Turno: " + turno);
         System.out.println("Salario: " + salario);
     }
