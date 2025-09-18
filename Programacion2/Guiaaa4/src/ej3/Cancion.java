@@ -4,15 +4,15 @@ public class Cancion  {
     private String nombre;
     private int duracion;
     private Genero genero;
-    private Artista artistaIvitado;
+    private Artista artistaInvitado;
     private Album album;
 
-    public Cancion(String nombre, int duracion, Genero genero, Artista artistaIvitado, Album album) {
+    public Cancion(String nombre, int duracion, Genero genero, Artista artistaInvitado, Album album) {
         this.album = album;
         this.nombre = nombre;
         this.duracion = duracion;
         this.genero = genero;
-        this.artistaIvitado = artistaIvitado;
+        this.artistaInvitado = artistaInvitado;
     }
 
     public String getNombre() {
@@ -27,8 +27,8 @@ public class Cancion  {
         return genero;
     }
 
-    public Artista getArtistaIvitado() {
-        return artistaIvitado;
+    public Artista getArtistaInvitado() {
+        return artistaInvitado;
     }
 
     public Album getAlbum() {

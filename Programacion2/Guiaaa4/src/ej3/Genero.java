@@ -4,7 +4,8 @@ public enum Genero {
     ROCK,
     TRAP,
     JAZZ,
-    HIPHOP,
+    HIP_HOP,
     POP,
-    METALyCLASICA
+    METAL,
+    CLASICA
 }

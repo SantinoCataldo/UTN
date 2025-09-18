@@ -1,9 +1,8 @@
 package ej3;
 
 public interface Reproduccion {
-    public void reproducir(Cancion cancion);
+    public void reproducir();
     public void añadirCancion(Cancion cancion);
-    public void eliminarCancion(Cancion cancion);
+    public void eliminarCancion();
     public void verMiLista();
 }
-

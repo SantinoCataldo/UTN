@@ -12,25 +12,37 @@ public class ListaPremium implements Reproduccion {
     }
 
     @Override
-    public void reproducir(Cancion cancion) {
+    public void reproducir() {
         if (miLista.isEmpty()) {
             System.out.println("No hay canciones en la lista.");
             return;
         }
 
-        if (!miLista.contains(cancion)) {
-            System.out.println("La canción no está en la lista.");
-            return;
+        System.out.println("Selecciona una canción para reproducir:");
+        for (int i = 0; i < miLista.size(); i++) {
+            Cancion c = miLista.get(i);
+            System.out.println((i + 1) + ". " + c.getNombre() + " - " + c.getAlbum().getArtista().getNombre());
         }
-        System.out.println("---------------------------");
-        System.out.println("Reproduciendo: " + cancion.getNombre());
-        System.out.println("Álbum: " + cancion.getAlbum().getTitulo());
-        System.out.println("Género: " + cancion.getGenero());
-        System.out.println("Artista: " + cancion.getAlbum().getArtista().getNombre());
-        if (cancion.getArtistaIvitado() != null) {
-            System.out.println("Artista invitado: " + cancion.getArtistaIvitado().getNombre());
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingresa el número de la canción: ");
+        int opcion = scanner.nextInt();
+
+        if (opcion >= 1 && opcion <= miLista.size()) {
+            Cancion cancion = miLista.get(opcion - 1);
+            System.out.println("---------------------------");
+            System.out.println("Reproduciendo: " + cancion.getNombre());
+            System.out.println("Álbum: " + cancion.getAlbum().getTitulo());
+            System.out.println("Género: " + cancion.getGenero());
+            System.out.println("Artista: " + cancion.getAlbum().getArtista().getNombre());
+            if (cancion.getArtistaInvitado() != null) {
+                System.out.println("Artista invitado: " + cancion.getArtistaInvitado().getNombre());
+            }
+            System.out.println("Presiona 'p' para pausar y volver al menú principal.");
+            System.out.println("---------------------------");
+        } else {
+            System.out.println("Opción inválida.");
         }
-        System.out.println("---------------------------");
     }
 
     @Override
@@ -40,14 +52,29 @@ public class ListaPremium implements Reproduccion {
     }
 
     @Override
-    public void eliminarCancion(Cancion cancion) {
-        if (miLista.remove(cancion)) {
-            System.out.println("Canción eliminada: " + cancion.getNombre());
+    public void eliminarCancion() {
+        if (miLista.isEmpty()) {
+            System.out.println("No hay canciones en la lista.");
+            return;
+        }
+
+        System.out.println("Selecciona una canción para eliminar:");
+        for (int i = 0; i < miLista.size(); i++) {
+            Cancion c = miLista.get(i);
+            System.out.println((i + 1) + ". " + c.getNombre() + " - " + c.getAlbum().getArtista().getNombre());
+        }
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingresa el número de la canción a eliminar: ");
+        int opcion = scanner.nextInt();
+
+        if (opcion >= 1 && opcion <= miLista.size()) {
+            Cancion cancionEliminada = miLista.remove(opcion - 1);
+            System.out.println("Canción eliminada: " + cancionEliminada.getNombre());
         } else {
-            System.out.println("La canción no está en la lista.");
+            System.out.println("Opción inválida.");
         }
     }
-
 
     @Override
     public void verMiLista() {
@@ -55,9 +82,14 @@ public class ListaPremium implements Reproduccion {
             System.out.println("La lista está vacía.");
             return;
         }
-        System.out.println("Lista de reproducción (" + nombre + "):");
-        for (Cancion c : miLista) {
-            System.out.println("- " + c.getNombre());
+        System.out.println("Lista de reproducción Premium (" + nombre + "):");
+        for (int i = 0; i < miLista.size(); i++) {
+            Cancion c = miLista.get(i);
+            System.out.println((i + 1) + ". " + c.getNombre() + " - " + c.getAlbum().getArtista().getNombre());
         }
+    }
+
+    public String getNombre() {
+        return nombre;
     }
 }
