@@ -1,4 +1,3 @@
-package PACKAGE_NAME;
-
 public interface Mantenimiento {
+    void realizarMantenimiento(double nuevaVelocidad, double nuevoKilometraje, int nuevoValor);
 }
