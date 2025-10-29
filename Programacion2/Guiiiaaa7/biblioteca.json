@@ -1,0 +1,13 @@
+{
+    "libros": [
+        {
+            "titulo": "El señor de los anillos",
+            "autor": "J.R.R. Tolkien"
+        },
+        {
+            "titulo": "1984",
+            "autor": "George Orwell"
+        }
+    ],
+    "nombreBiblioteca": "Biblioteca Central"
+}

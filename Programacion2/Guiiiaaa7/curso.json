@@ -1,0 +1,18 @@
+{
+    "codigo": 101,
+    "nombreCurso": "Programación 2",
+    "inscriptos": [
+        {
+            "sexo": "Masculino",
+            "nombre": "Juan Perez",
+            "edad": 30,
+            "dni": "12345678A"
+        },
+        {
+            "sexo": "Femenino",
+            "nombre": "Maria Lopez",
+            "edad": 25,
+            "dni": "87654321B"
+        }
+    ]
+}
