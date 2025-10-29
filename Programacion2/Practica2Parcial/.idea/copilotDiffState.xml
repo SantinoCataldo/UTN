@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/src/Owner.java">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/src/Owner.java" />
+              <option name="updatedContent" value="import java.util.Objects;&#10;&#10;public class Owner {&#10;    private String nombre;&#10;    private String apellido;&#10;    private String dni;&#10;    private String email;&#10;    private String telefono;&#10;&#10;    public Owner(String nombre, String apellido, String dni, String email, String telefono) {&#10;        this.nombre = nombre;&#10;        this.apellido = apellido;&#10;        this.dni = dni;&#10;        this.email = email;&#10;        this.telefono = telefono;&#10;    }&#10;&#10;    // getters&#10;    public String getNombre() { return nombre; }&#10;    public String getApellido() { return apellido; }&#10;    public String getDni() { return dni; }&#10;    public String getEmail() { return email; }&#10;    public String getTelefono() { return telefono; }&#10;&#10;    @Override&#10;    public String toString() {&#10;        return &quot;Owner{&quot; +&#10;                &quot;nombre='&quot; + nombre + '\'' +&#10;                &quot;, apellido='&quot; + apellido + '\'' +&#10;                &quot;, dni='&quot; + dni + '\'' +&#10;                &quot;, email='&quot; + email + '\'' +&#10;                &quot;, telefono='&quot; + telefono + '\'' +&#10;                '}';&#10;    }&#10;&#10;    @Override&#10;    public boolean equals(Object o) {&#10;        if (this == o) return true;&#10;        if (!(o instanceof Owner)) return false;&#10;        Owner owner = (Owner) o;&#10;        return Objects.equals(dni, owner.dni);&#10;    }&#10;&#10;    @Override&#10;    public int hashCode() {&#10;        return Objects.hash(dni);&#10;    }&#10;}&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
