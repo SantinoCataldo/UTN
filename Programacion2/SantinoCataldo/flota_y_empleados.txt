@@ -1,0 +1,71 @@
+{
+    "vehiculos": [
+        {
+            "patente": "AA123BB",
+            "marca": "Mercedes-Benz",
+            "modelo": "Tourismo",
+            "capacidad": 50,
+            "anio": 2020
+        },
+        {
+            "patente": "AB456CD",
+            "marca": "Scania",
+            "modelo": "K400",
+            "capacidad": 45,
+            "anio": 2019
+        },
+        {
+            "patente": "AC789EF",
+            "marca": "Volvo",
+            "modelo": "9700",
+            "capacidad": 48,
+            "anio": 2021
+        },
+        {
+            "patente": "AD234GH",
+            "marca": "Marcopolo",
+            "modelo": "Paradiso G7",
+            "capacidad": 52,
+            "anio": 2018
+        },
+        {
+            "patente": "AE567IJ",
+            "marca": "Iveco",
+            "modelo": "Crossway",
+            "capacidad": 44,
+            "anio": 2022
+        }
+    ],
+    "empleados": [
+        {
+            "dni": "30111222",
+            "nombre": "Carlos López",
+            "puesto": "Chofer",
+            "antiguedad": 5
+        },
+        {
+            "dni": "28999111",
+            "nombre": "Martina Pérez",
+            "puesto": "Chofer",
+            "antiguedad": 3
+        },
+        {
+            "dni": "31222333",
+            "nombre": "Luis Fernández",
+            "puesto": "Chofer",
+            "antiguedad": 7
+        },
+        {
+            "dni": "27444555",
+            "nombre": "Laura Gómez",
+            "puesto": "Administrativa",
+            "antiguedad": 4
+        },
+        {
+            "dni": "30555666",
+            "nombre": "Sofía Torres",
+            "puesto": "Coordinadora de Viajes",
+            "antiguedad": 6
+        }
+    ]
+}

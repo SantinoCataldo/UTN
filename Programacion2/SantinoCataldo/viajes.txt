@@ -1,0 +1,22 @@
+[{
+    "estado": "FINALIZADO",
+    "patenteVehiculo": "AA123BB",
+    "listaPasajeros": [
+        {
+            "asientoAsignado": "Adelante Derecha",
+            "nombre": "Pedro",
+            "dni": 46828053
+        },
+        {
+            "asientoAsignado": "Atras Izquierda",
+            "nombre": "Miguel",
+            "dni": 46828052
+        }
+    ],
+    "dniChofer": 31222333,
+    "fechaSalida": "01-06-2025",
+    "duracion": 8,
+    "id": 1,
+    "destino": "Rosario",
+    "lugarSalida": "Buenos Aires"
+}]
