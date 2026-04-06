@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/Guia2SpringWeb/src/main/java/utn_dany/Guia2SpringWeb/model/SaleEntity.java">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/Guia2SpringWeb/src/main/java/utn_dany/Guia2SpringWeb/model/SaleEntity.java" />
+              <option name="originalContent" value="package utn_dany.Guia2SpringWeb.model;&#10;&#10;import lombok.AllArgsConstructor;&#10;import lombok.Data;&#10;import lombok.NoArgsConstructor;&#10;&#10;@Data&#10;@AllArgsConstructor&#10;@NoArgsConstructor&#10;public class SaleEntity {&#10;    private Long id;&#10;    private Long userId;&#10;    private Long productId;&#10;    private int quantity;&#10;    private Double totalPrice;&#10;}&#10;" />
+              <option name="updatedContent" value="package utn_dany.Guia2SpringWeb.model;&#10;&#10;import lombok.AllArgsConstructor;&#10;import lombok.Data;&#10;import lombok.NoArgsConstructor;&#10;&#10;@Data&#10;@AllArgsConstructor&#10;@NoArgsConstructor&#10;public class SaleEntity {&#10;    private Long id;&#10;    private Long userId;&#10;    private Long productId;&#10;    private int quantity;&#10;    private Double totalPrice;&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
