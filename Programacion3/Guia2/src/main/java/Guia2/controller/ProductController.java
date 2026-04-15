@@ -3,9 +3,12 @@ package Guia2.controller;
 import Guia2.model.dto.requestdto.ProductCreateRequestDTO;
 import Guia2.model.dto.responsedto.ProductResponseDTO;
 import Guia2.service.ProductService;
+import Guia2.validate.group.OnCreate;
+import Guia2.validate.group.OnUpdate;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,12 +31,12 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductResponseDTO> create(@RequestBody ProductCreateRequestDTO productDTO) {
+    public ResponseEntity<ProductResponseDTO> create(@Validated(OnCreate.class) @RequestBody ProductCreateRequestDTO productDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.create(productDTO));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProductResponseDTO> update(@PathVariable Long id, @RequestBody ProductCreateRequestDTO productDTO) {
+    public ResponseEntity<ProductResponseDTO> update(@PathVariable Long id, @Validated(OnUpdate.class) @RequestBody ProductCreateRequestDTO productDTO) {
         return ResponseEntity.ok(service.update(id, productDTO));
     }
 
