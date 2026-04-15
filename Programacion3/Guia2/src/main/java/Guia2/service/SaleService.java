@@ -3,10 +3,11 @@ package Guia2.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import Guia2.model.ProductEntity;
-import Guia2.model.SaleEntity;
+import Guia2.model.dto.responsedto.ProductResponseDTO;
+import Guia2.model.dto.responsedto.SaleResponseDTO;
+import Guia2.model.dto.requestdto.SaleCreateRequestDTO;
+import Guia2.model.dto.responsedto.UserResponseDTO;
 import Guia2.repository.SaleRepository;
-import Guia2.model.UserEntity;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -18,46 +19,50 @@ public class SaleService {
     private final ProductService productService;
     private final UserService userService;
 
-    public List<SaleEntity> findAll(){return  repository.findAll();}
+    public List<SaleResponseDTO> findAll(){return  repository.findAll();}
 
-    public SaleEntity getById(Long id) {
+    public SaleResponseDTO getById(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Venta no encontrada"));
     }
 
-    public SaleEntity create(SaleEntity sale) {
-        if(sale.getQuantity() <= 0) {
+    public SaleResponseDTO create(SaleCreateRequestDTO saleDto) {
+        if(saleDto.getQuantity() <= 0) {
             throw new IllegalArgumentException("La cantidad debe ser mayor a cero");
         }
 
-        ProductEntity product = productService.getById(sale.getProductId());
-        UserEntity user = userService.getById(sale.getUserId());
+        ProductResponseDTO product = productService.getById(saleDto.getProductId());
+        UserResponseDTO user = userService.getById(saleDto.getUserId());
 
-        if(product.getStock() < sale.getQuantity()) {
+        if(product.getStock() < saleDto.getQuantity()) {
             throw new IllegalArgumentException("Stock insuficiente");
         }
 
-        double totalPrice = product.getPrice() * sale.getQuantity();
-        sale.setTotalPrice(totalPrice);
+        double totalPrice = product.getPrice() * saleDto.getQuantity();
+        SaleResponseDTO toSave = new SaleResponseDTO();
+        toSave.setUserId(user.getId());
+        toSave.setProductId(product.getId());
+        toSave.setQuantity(saleDto.getQuantity());
+        toSave.setTotalPrice(totalPrice);
 
-        product.setStock(product.getStock() - sale.getQuantity());
-        productService.update(product.getId(), product);
+        product.setStock(product.getStock() - saleDto.getQuantity());
+        productService.update(product.getId(), new Guia2.model.dto.requestdto.ProductCreateRequestDTO(product.getName(), product.getPrice(), product.getStock()));
 
-        return repository.save(sale);
+        return repository.save(toSave);
     }
 
-    public SaleEntity update(Long id, SaleEntity sale) {
+    public SaleResponseDTO update(Long id, SaleCreateRequestDTO saleDto) {
 
-        SaleEntity existing = getById(id);
+        SaleResponseDTO existing = getById(id);
 
-        if(sale.getQuantity() <= 0) {
+        if(saleDto.getQuantity() <= 0) {
             throw new IllegalArgumentException("La cantidad debe ser mayor a cero");
         }
 
-        ProductEntity product = productService.getById(existing.getProductId());
+        ProductResponseDTO product = productService.getById(existing.getProductId());
 
         int prevQuantity = existing.getQuantity();
-        int newQuantity = sale.getQuantity();
+        int newQuantity = saleDto.getQuantity();
 
         int diff = newQuantity - prevQuantity;
 
@@ -66,7 +71,7 @@ public class SaleService {
         }
 
         product.setStock(product.getStock() - diff);
-        productService.update(product.getId(), product);
+        productService.update(product.getId(), new Guia2.model.dto.requestdto.ProductCreateRequestDTO(product.getName(), product.getPrice(), product.getStock()));
 
         double newTotalPrice = product.getPrice() * newQuantity;
         existing.setQuantity(newQuantity);
@@ -78,7 +83,7 @@ public class SaleService {
 
     public void delete(Long id) {
 
-        SaleEntity existing = getById(id);
+        SaleResponseDTO existing = getById(id);
 
         if (!repository.delete(existing)) {
             throw new RuntimeException("No se pudo eliminar");

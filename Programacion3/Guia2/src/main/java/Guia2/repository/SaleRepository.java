@@ -1,37 +1,37 @@
 package Guia2.repository;
 
 import org.springframework.stereotype.Repository;
-import Guia2.model.SaleEntity;
+import Guia2.model.dto.responsedto.SaleResponseDTO;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class SaleRepository implements IRepository<SaleEntity> {
+public class SaleRepository implements IRepository<SaleResponseDTO> {
 
-    private final List<SaleEntity> sales = new ArrayList<>();
+    private final List<SaleResponseDTO> sales = new ArrayList<>();
     private Long idCounter = 1L;
 
     @Override
-    public List<SaleEntity> findAll() {
+    public List<SaleResponseDTO> findAll() {
         return sales;
     }
 
     @Override
-    public SaleEntity save(SaleEntity entity) {
+    public SaleResponseDTO save(SaleResponseDTO entity) {
         entity.setId(idCounter++);
         sales.add(entity);
         return entity;
     }
 
     @Override
-    public boolean delete(SaleEntity entity) {
+    public boolean delete(SaleResponseDTO entity) {
         return sales.removeIf(s -> s.getId().equals(entity.getId()));
     }
 
     @Override
-    public Optional<SaleEntity> update(SaleEntity entity) {
+    public Optional<SaleResponseDTO> update(SaleResponseDTO entity) {
         return sales.stream()
                 .filter(s -> s.getId().equals(entity.getId()))
                 .findFirst()
@@ -42,7 +42,7 @@ public class SaleRepository implements IRepository<SaleEntity> {
                 });
     }
 
-    public Optional<SaleEntity> findById(Long id) {
+    public Optional<SaleResponseDTO> findById(Long id) {
         return sales.stream().filter(s -> s.getId().equals(id)).findFirst();
     }
 }

@@ -2,8 +2,10 @@ package Guia2.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import Guia2.model.ProductEntity;
+import Guia2.model.dto.responsedto.ProductResponseDTO;
+import Guia2.model.dto.requestdto.ProductCreateRequestDTO;
 import Guia2.repository.ProductRepository;
+import Guia2.mapper.ProductMapper;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -13,27 +15,29 @@ import java.util.NoSuchElementException;
 public class ProductService {
 
     private final ProductRepository repository;
+    private final ProductMapper mapper;
 
-    public List<ProductEntity> getAll() {
+    public List<ProductResponseDTO> getAll() {
         return repository.findAll();
     }
 
-    public ProductEntity getById(Long id) {
+    public ProductResponseDTO getById(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Producto no encontrado"));
     }
 
-    public ProductEntity create(ProductEntity product) {
-        return repository.save(product);
+    public ProductResponseDTO create(ProductCreateRequestDTO productDto) {
+        ProductResponseDTO toSave = mapper.toResponseDTO(productDto);
+        return repository.save(toSave);
     }
 
-    public ProductEntity update(Long id, ProductEntity product) {
+    public ProductResponseDTO update(Long id, ProductCreateRequestDTO productDto) {
 
-        ProductEntity existing = getById(id);
+        ProductResponseDTO existing = getById(id);
 
-        existing.setName(product.getName());
-        existing.setPrice(product.getPrice());
-        existing.setStock(product.getStock());
+        existing.setName(productDto.getName());
+        existing.setPrice(productDto.getPrice());
+        existing.setStock(productDto.getStock());
 
         return repository.update(existing)
                 .orElseThrow(() -> new RuntimeException("Error al actualizar"));
@@ -41,7 +45,7 @@ public class ProductService {
 
     public void delete(Long id) {
 
-        ProductEntity existing = getById(id);
+        ProductResponseDTO existing = getById(id);
 
         if (!repository.delete(existing)) {
             throw new RuntimeException("No se pudo eliminar");
