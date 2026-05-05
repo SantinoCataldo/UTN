@@ -358,6 +358,20 @@ erDiagram
         time hora_fin
         string nombre_turno
     }
+    CORRELATIVIDAD {
+        long id PK
+        long id_materia FK
+        long id_materia_correlativa FK
+        enum tipo_requisito
+        boolean activa
+    }
+    ASIGNACION_DOCENTE {
+        long id PK
+        long id_docente FK
+        long id_comision FK
+        enum rol_en_comision
+        date fecha_asignacion
+    }
 
     PERSONA ||--o| CUENTA_USUARIO : "autentica"
     PERSONA ||--o| ALUMNO : "es_alumno"
