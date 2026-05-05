@@ -215,10 +215,9 @@ Vínculo entre un Docente y una Comisión que dicta. Permite que una comisión t
 erDiagram
     PERSONA {
         long id PK
-        string dni UK
         string nombre
         string apellido
-        date fecha_nacimiento
+        string dni UK
         string email_personal UK
         string telefono
         string domicilio
@@ -227,31 +226,28 @@ erDiagram
     }
     CUENTA_USUARIO {
         long id PK
-        long id_persona UK,FK
-        string email_institucional UK
+        long id_persona FK, UK
+        string identificador UK
         string password
         enum rol_sistema
         enum estado
         datetime fecha_alta
-        datetime fecha_ultimo_acceso
-        boolean requiere_cambio_password
     }
     ALUMNO {
         long id PK
-        long id_persona UK,FK
+        long id_persona FK, UK
         string legajo UK
         date fecha_ingreso
-        date fecha_egreso "nullable"
+        date fecha_egreso
         enum estado_alumno
     }
     DOCENTE {
         long id PK
         long id_persona FK
-        string legajo_docente UK
+        string numero_docente UK
         enum categoria
         enum dedicacion
         date fecha_alta_docente
-        string especialidad
         boolean activo
     }
     ADMINISTRATIVO {
@@ -275,7 +271,7 @@ erDiagram
     MATERIA {
         long id PK
         long id_carrera FK
-        string codigo "UK por carrera"
+        string codigo UK
         string nombre
         int anio
         int cuatrimestre
@@ -302,13 +298,13 @@ erDiagram
         enum estado_cursada
         enum condicion
         double porcentaje_asistencia
-        double nota_final_cursada "nullable"
+        double nota_final_cursada
     }
     NOTA_EXAMEN {
         long id PK
         long id_alumno FK
         long id_materia FK
-        long id_docente_titular FK "nullable"
+        long id_docente_titular FK
         enum tipo_examen
         double valor_numerico
         string valor_texto
@@ -317,32 +313,6 @@ erDiagram
         string folio
         string libro
         string observaciones
-    }
-    CORRELATIVIDAD {
-        long id PK
-        long id_materia FK
-        long id_materia_correlativa FK
-        enum tipo_requisito
-        boolean activa
-    }
-    ASIGNACION_DOCENTE {
-        long id PK
-        long id_docente FK
-        long id_comision FK
-        enum rol_en_comision
-        date fecha_asignacion
-        date fecha_baja "nullable"
-    }
-
-    ESPECIALIDAD {
-        long id PK
-        string nombre UK
-    }
-    CLASE {
-        long id PK
-        long id_comision FK
-        date fecha
-        string tema_dictado
     }
     ASISTENCIA {
         long id PK
@@ -358,6 +328,12 @@ erDiagram
         time hora_fin
         string nombre_turno
     }
+    CLASE {
+        long id PK
+        long id_comision FK
+        date fecha
+        string tema_dictado
+    }
     CORRELATIVIDAD {
         long id PK
         long id_materia FK
@@ -373,24 +349,27 @@ erDiagram
         date fecha_asignacion
     }
 
-    PERSONA ||--o| CUENTA_USUARIO : "autentica"
-    PERSONA ||--o| ALUMNO : "es_alumno"
-    PERSONA ||--o| DOCENTE : "es_docente"
-    PERSONA ||--o| ADMINISTRATIVO : "es_administrativo"
+    %% Relaciones
+    PERSONA ||--o| CUENTA_USUARIO : "tiene"
+    PERSONA ||--o| ALUMNO : "es"
+    PERSONA ||--o| DOCENTE : "es"
+    PERSONA ||--o| ADMINISTRATIVO : "es"
     CARRERA ||--o{ MATERIA : "contiene"
-    MATERIA ||--o{ COMISION : "se_dicta_en"
-    MATERIA }o--o{ MATERIA : "correlativa" USING "correlatividad"
-    ALUMNO ||--o{ INSCRIPCION : "realiza"
-    COMISION ||--o{ INSCRIPCION : "recibe"
-    ALUMNO ||--o{ NOTA_EXAMEN : "obtiene"
-    MATERIA ||--o{ NOTA_EXAMEN : "evalua"
-    DOCENTE ||--o{ NOTA_EXAMEN : "firma_acta"
-    DOCENTE }o--o{ COMISION : "dicta" USING "asignacion_docente"
-    COMISION ||--o{ CLASE : "tiene_sesiones"
-    COMISION }o--o{ HORARIO : "usa_franja"
-    CLASE ||--o{ ASISTENCIA : "registra"
-    ALUMNO ||--o{ ASISTENCIA : "asiste_a"
+    MATERIA ||--o{ COMISION : "se_dicta"
+    MATERIA ||--o{ CORRELATIVIDAD : "es_requerida_por"
+    MATERIA ||--o{ CORRELATIVIDAD : "requiere_a"
+    ALUMNO ||--o{ INSCRIPCION : "se_anota"
+    COMISION ||--o{ INSCRIPCION : "registra"
+    ALUMNO ||--o{ NOTA_EXAMEN : "rinde"
+    MATERIA ||--o{ NOTA_EXAMEN : "se_evalua"
+    DOCENTE ||--o{ ASIGNACION_DOCENTE : "es_asignado"
+    COMISION ||--o{ ASIGNACION_DOCENTE : "tiene"
+    COMISION ||--o{ CLASE : "se_divide_en"
+    CLASE ||--o{ ASISTENCIA : "tiene"
+    ALUMNO ||--o{ ASISTENCIA : "asiste"
+    COMISION }o--o{ HORARIO : "usa"
 ```
+
 
 ---
 
@@ -428,7 +407,7 @@ erDiagram
 | **Identidad** | `Usuario` unificado con rol. | `Persona` + `CuentaUsuario` desacoplados. |
 | **Roles** | Enum dentro de Usuario. | Entidades independientes: `Alumno`, `Docente`, `Administrativo`. |
 | **Docente** | No existe como entidad. | Entidad completa con categoría, dedicación y asignaciones. |
-| **Autenticación** | Legajo como username. | Email institucional + hash seguro + control de estado de cuenta. |
+| **Autenticación** | Legajo como username. | Identificador (Legajo/Docente) + hash seguro + control de estado. |
 | **Materia vs Comisión** | Comisión existe pero es básica. | Comisión es robusta: cupos, estados del ciclo de vida, aula, turno. |
 | **Notas** | Sin vínculo al docente que firmó. | Vinculada al `Docente` titular y con metadatos de acta. |
 | **Correlatividades** | N:M simple. | N:M con tipo de requisito (`APROBADA` vs `REGULARIZADA`). |
