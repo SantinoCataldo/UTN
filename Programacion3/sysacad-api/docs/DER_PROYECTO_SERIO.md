@@ -22,16 +22,14 @@ Entidad central de identidad. Almacena datos biográficos y de contacto. Es inde
 ---
 
 ### 🔐 CuentaUsuario
-Gestiona la autenticación y autorización en el sistema. Desacopla la identidad (Persona) del mecanismo de acceso. Una persona puede tener una o más cuentas (aunque lo habitual es una única cuenta institucional).
+Gestiona el acceso al sistema. El `username` coincide con el Legajo (provisorio o definitivo). La primera vez, el password es el DNI del usuario.
 - **id** (Long, PK)
 - **id_persona** (Long, UK, FK) — Vinculación 1:1 con Persona.
-- **email_institucional** (String, UK) — Ej: `611790@utn.edu.ar`.
-- **password** (String) — Hash seguro (Argon2 / BCrypt).
+- **identificador** (String, UK) — ID de acceso (Legajo para alumnos, Nº Docente para profesores).
+- **password** (String) — Hash seguro. Por defecto es el DNI en el primer ingreso.
 - **rol_sistema** (Enum) — `ALUMNO`, `DOCENTE`, `ADMINISTRATIVO`, `SYSADMIN`.
-- **estado** (Enum) — `ACTIVA`, `BLOQUEADA`, `EXPIRADA`, `ELIMINADA`.
+- **estado** (Enum) — `ACTIVA`, `BLOQUEADA`, `INACTIVA`.
 - **fecha_alta** (LocalDateTime)
-- **fecha_ultimo_acceso** (LocalDateTime)
-- **requiere_cambio_password** (Boolean) — Forzar cambio en primer login.
 
 ---
 
@@ -49,13 +47,32 @@ Perfil académico de una persona que cursa una o más carreras. Una misma Person
 ### 👨‍🏫 Docente
 Perfil profesional del personal docente. Incluye información laboral y categorización universitaria.
 - **id** (Long, PK)
-- **id_persona** (Long, FK) — Una persona puede ser docente en múltiples períodos, pero el perfil es único.
-- **legajo_docente** (String, UK)
+- **id_persona** (Long, FK)
+- **numero_docente** (String, UK)
 - **categoria** (Enum) — `AYUDANTE_ALUMNO`, `AYUDANTE_DIPLOMADO`, `JTP`, `ADJUNTO`, `ASOCIADO`, `TITULAR`.
 - **dedicacion** (Enum) — `SIMPLE`, `EXCLUSIVA`, `SEMI_EXCLUSIVA`.
 - **fecha_alta_docente** (LocalDate)
-- **especialidad** (String)
 - **activo** (Boolean)
+
+---
+
+### 📅 Clase (Sesión)
+Representa un encuentro específico de una comisión en el calendario. Es el "contenedor" para el tema dado y la asistencia.
+- **id** (Long, PK)
+- **id_comision** (Long, FK)
+- **fecha** (LocalDate)
+- **tema_dictado** (String) — Lo que el docente escribe en el libro de temas.
+
+---
+
+### ✋ Asistencia
+Registro individual de presencia de un alumno en una clase determinada.
+- **id** (Long, PK)
+- **id_clase** (Long, FK)
+- **id_alumno** (Long, FK)
+- **presente** (Boolean)
+- **observaciones** (String, Nullable) — Ej: "Llegó tarde".
+
 
 ---
 
@@ -110,6 +127,16 @@ Oferta concreta de una materia dictada en un período lectivo específico. Es la
 
 ---
 
+### ⏰ Horario (Catálogo Fijo)
+Representa las franjas horarias estándar de la institución. Estos registros se cargan una vez y no suelen cambiar.
+- **id** (Long, PK)
+- **dia_semana** (Enum) — `LUNES`, `MARTES`, `MIERCOLES`, `JUEVES`, `VIERNES`, `SABADO`.
+- **hora_inicio** (LocalTime) — Ej: 18:30.
+- **hora_fin** (LocalTime) — Ej: 22:30.
+- **nombre_turno** (String) — Ej: "Noche Standard", "Mañana Bloque 1".
+
+---
+
 ### 📝 Inscripcion
 Vínculo entre un Alumno y una Comisión en la que se ha inscripto.
 - **id** (Long, PK)
@@ -129,7 +156,7 @@ Registro oficial de evaluaciones rendidas por un alumno en una materia. Incluye 
 - **id_alumno** (Long, FK)
 - **id_materia** (Long, FK)
 - **id_docente_titular** (Long, FK, Nullable) — Docente que firmó el acta.
-- **tipo_examen** (Enum) — `PARCIAL_1`, `PARCIAL_2`, `RECUPERATORIO`, `FINAL`, `EQUIVALENCIA`.
+- **tipo_examen** (Enum) — `PARCIAL_1`, `PARCIAL_2`, `RECUPERATORIO_1`, `RECUPERATORIO_2`, `FLOTANTE`, `FINAL`, `EQUIVALENCIA`, `NIVELATORIO`.
 - **valor_numerico** (Double)
 - **valor_texto** (String) — Ej: "OCHO", "AUSENTE", "NO_APROBADO".
 - **fecha_examen** (LocalDate)
@@ -176,8 +203,9 @@ Vínculo entre un Docente y una Comisión que dicta. Permite que una comisión t
 | Comision | **1 : N** | Inscripcion | Una comisión recibe muchos alumnos inscriptos. |
 | Alumno | **1 : N** | NotaExamen | Un alumno acumula muchas notas/exámenes. |
 | Materia | **1 : N** | NotaExamen | Una materia genera muchas notas para distintos alumnos. |
-| Docente | **1 : N** | NotaExamen | Un docente puede firmar actas de examen. |
-| Docente | **N : M** | Comision (AsignacionDocente) | Un docente puede dictar varias comisiones (aunque sea en diferentes cuatrimestres). Una comisión puede tener varios docentes (titular + ayudantes). |
+| Alumno | **1 : N** | Asistencia | Un alumno acumula registros de asistencia por cada clase. |
+| Docente | **N : M** | Comision (AsignacionDocente) | Un docente puede ser Titular o Ayudante en varias comisiones. |
+| Comision | **N : M** | Horario | Una comisión se asigna a uno o más horarios fijos del catálogo. |
 
 ---
 
@@ -306,6 +334,31 @@ erDiagram
         date fecha_baja "nullable"
     }
 
+    ESPECIALIDAD {
+        long id PK
+        string nombre UK
+    }
+    CLASE {
+        long id PK
+        long id_comision FK
+        date fecha
+        string tema_dictado
+    }
+    ASISTENCIA {
+        long id PK
+        long id_clase FK
+        long id_alumno FK
+        boolean presente
+        string observaciones
+    }
+    HORARIO {
+        long id PK
+        enum dia_semana
+        time hora_inicio
+        time hora_fin
+        string nombre_turno
+    }
+
     PERSONA ||--o| CUENTA_USUARIO : "autentica"
     PERSONA ||--o| ALUMNO : "es_alumno"
     PERSONA ||--o| DOCENTE : "es_docente"
@@ -319,6 +372,10 @@ erDiagram
     MATERIA ||--o{ NOTA_EXAMEN : "evalua"
     DOCENTE ||--o{ NOTA_EXAMEN : "firma_acta"
     DOCENTE }o--o{ COMISION : "dicta" USING "asignacion_docente"
+    COMISION ||--o{ CLASE : "tiene_sesiones"
+    COMISION }o--o{ HORARIO : "usa_franja"
+    CLASE ||--o{ ASISTENCIA : "registra"
+    ALUMNO ||--o{ ASISTENCIA : "asiste_a"
 ```
 
 ---
@@ -369,7 +426,6 @@ erDiagram
 
 Si este modelo se implementara en producción, las siguientes entidades se agregarían en iteraciones posteriores sin romper el modelo base:
 - **Aula**: Entidad propia con edificio, piso, capacidad, recursos (proyector, laboratorio).
-- **Horario**: Desdoblar el turno en bloques horarios específicos (Lunes 18:00-22:00).
 - **Pago / Cuota**: Integración con el módulo de tesorería.
 - **Trámite / Solicitud**: Excepciones de correlatividad, equivalencias, certificados.
 - **Mensajería / Notificación**: Comunicaciones entre alumno y secretaría.

@@ -1,0 +1,164 @@
+Programación III · Comisión 7 · Prof. Daniel Díaz Trabajo Práctico Final
+PROGRAMACIÓN III · COMISIÓN 7
+Trabajo Práctico Final
+Proyecto grupal — Desarrollo de una API RESTful
+Grupos: 3 a 5 integrantes · Entrega principal: 17 de junio · Recuperatorio: 24 de junio ·
+DER previo: 5 de mayo
+1. Objetivo
+Desarrollar una API RESTful que gestione un sistema de información de tema libre a elección del
+grupo
+(biblioteca, tienda online, red social, sistema de reservas, etc.), aplicando las tecnologías y buenas
+prácticas vistas a lo largo de la materia.
+2. Modalidad de trabajo
+Aspecto Detalle
+Composición del grupo Mínimo 3 integrantes · Máximo 5 integrantes
+No permitida — El trabajo no puede realizarse de forma
+Modalidad individual
+individual
+Repositorio Git en GitHub obligatorio desde el inicio del
+Control de versiones
+proyecto
+Libre elección del grupo, sujeto a aprobación del docente
+Tema
+mediante el DER
+3. Requisito previo — Diagrama ER
+⚠ REQUISITO OBLIGATORIO ANTES DE COMENZAR EL DESARROLLO
+Cada grupo deberá presentar un Diagrama de Entidad-Relación (DER) con las entidades
+principales,
+sus atributos y las relaciones entre ellas. El docente debe aprobarlo para habilitar el desarrollo.
+Fecha de entrega del DER: 5 de mayo
+4. Requisitos de entidades según cantidad de integrantes
+Integrantes Entidades mínimas Relaciones esperadas
+Al menos 3 entidades
+3 integrantes Relacionadas entre sí (ej. 1:N, N:M)
+principales
+Al menos 4 entidades Relacionadas entre sí con cardinalidades
+4 integrantes
+principales mixtas
+Al menos 5 entidades Relaciones complejas, incluyendo al
+5 integrantes
+principales menos una N:M
+Programación III · Comisión 7 · Prof. Daniel Díaz Trabajo Práctico Final
+5. Tecnologías y herramientas obligatorias
+Tecnología Uso en el proyecto Unidad
+Creación de controladores y endpoints REST
+Spring Boot Web U6
+(@RestController, @RequestMapping)
+Persistencia de datos, mapeo de entidades y
+Spring Data JPA + MySQL relaciones (@OneToMany, @ManyToMany), U7
+JPQL
+Autenticación y autorización, roles y permisos,
+Spring Security + JWT U9
+encriptado de contraseñas
+DTOs de entrada/salida + Separación entre capa de presentación y
+U6
+Mappers dominio. Ver sección 6.
+Manejo de excepciones @ControllerAdvice — respuestas de error
+U6
+centralizado estructuradas y consistentes
+@Valid, @NotNull, @Size, @Email, etc.
+Validaciones de entrada U6
+aplicadas sobre los DTOs de entrada
+Documentación completa de todos los
+OpenAPI / Swagger endpoints con parámetros, cuerpos y Transversal
+respuestas
+Control de versiones desde el inicio. Se
+Git + GitHub Transversal
+evaluará el historial de commits del grupo.
+6. Alcance técnico de la API
+Requisito Descripción
+Diseño RESTful: uso correcto de verbos HTTP (GET, POST, PUT, DELETE),
+REST
+status codes y estructura de URLs
+Endpoints de creación, lectura, actualización y eliminación sobre todos los
+CRUD
+recursos principales
+Endpoints adicionales para consultas específicas del dominio (búsqueda,
+Consultas
+filtros, reportes) según los procesos definidos en Metodología de Sistemas 1
+Endpoints protegidos mediante JWT. Rutas públicas (login/registro) y rutas
+Seguridad
+privadas con roles diferenciados
+Uso de ResponseEntity para retornar códigos de estado apropiados junto con
+Respuestas
+los DTOs de respuesta
+Manejo centralizado con @RestControllerAdvice. Respuestas de error con
+Excepciones
+estructura consistente (código, mensaje, timestamp)
+Programación III · Comisión 7 · Prof. Daniel Díaz Trabajo Práctico Final
+7. Temas de la planificación aplicables al proyecto
+Unid. Tema Aplicación en el TP
+Arquitectura REST, HTTP,
+U4 Diseño general de la API y testing de endpoints
+status codes, Postman
+Spring Boot, anotaciones
+Estructura del proyecto: @Service, @Repository,
+U5 esenciales, beans, inyección
+@Component, ciclo de vida de beans
+de dependencias
+Spring Web, controladores,
+Capa de presentación, DTOs, validación de entrada,
+U6 ResponseEntity, mappers,
+manejo de errores centralizado
+validaciones, excepciones
+Spring Data JPA, ORM,
+Persistencia completa con MySQL, entidades
+U7 Hibernate, relaciones, JPQL,
+relacionadas, consultas personalizadas con @Query
+transacciones
+Asincronía, @Async, Opcional: operaciones que se beneficien de ejecución
+U8
+CompletableFuture asíncrona (envíos, reportes, notificaciones)
+Spring Security, JWT, roles,
+Autenticación completa, autorización por roles,
+U9 CORS, encriptado de
+protección de endpoints sensibles
+contraseñas
+JUnit, pruebas unitarias, Opcional/diferenciador: tests unitarios sobre servicios o
+U10
+Given/When/Assert componentes críticos del sistema
+8. Instancias de entrega
+Instancia Fecha Contenido
+Diagrama de Entidad-Relación con entidades, atributos y
+5 de
+DER Previo relaciones. Requiere aprobación del docente para habilitar el
+mayo
+desarrollo del proyecto.
+Instancia principal. Proyecto completo con todos los requisitos
+técnicos.
+1ra Entrega y 17 de Defensa grupal: explicación del proyecto, decisiones tomadas,
+Defensa junio demostración funcional y navegación por Swagger.
+Defensa individual: cada integrante explica su aporte específico y
+justifica sus decisiones técnicas.
+Solo para grupos que no aprueben la primera instancia. Proyecto
+2da Entrega 24 de corregido según las observaciones recibidas. Nueva defensa
+(Recuperatorio) junio grupal e individual.
+Esta instancia es la última oportunidad de aprobación.
+9. Criterios de evaluación en la defensa
+Defensa grupal Defensa individual
+Explicación general del sistema desarrollado Explicación del módulo o funcionalidad
+Decisiones de diseño y arquitectura tomadas desarrollada
+Demostración funcional de los endpoints Justificación de las decisiones técnicas propias
+Navegación por la documentación Swagger Comprensión del código entregado
+Historial de commits en GitHub
+Programación III · Comisión 7 · Prof. Daniel Díaz Trabajo Práctico Final
+10. Buenas prácticas recomendadas
+Área Recomendación
+Nombres claros y descriptivos, separación estricta de capas (Controller →
+Código
+Service → Repository), sin lógica de negocio en los controladores
+Nunca exponer entidades JPA directamente. Usar siempre DTOs de
+DTOs
+respuesta específicos por caso de uso cuando sea necesario
+Proteger datos sensibles, no retornar passwords en las respuestas, validar
+Seguridad
+permisos por rol en cada endpoint protegido
+Todos los endpoints documentados en Swagger con descripción, parámetros
+Documentación
+esperados y posibles respuestas (incluyendo errores 4xx/5xx)
+Commits frecuentes y descriptivos. Cada integrante debe tener commits
+Git
+propios identificables. Usar ramas por funcionalidad si es posible.
+Validar en el DTO de entrada, no en la entidad ni en el servicio. Los errores de
+Validaciones
+validación deben retornar 400 Bad Request con mensajes claros.
