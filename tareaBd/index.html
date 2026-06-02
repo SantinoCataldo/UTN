@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big Data — Base de Datos 2</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="presentation-body">
+
+<!-- NAVIGATION -->
+<nav class="slide-nav">
+    <div class="nav-brand">
+        <span class="nav-dot"></span>
+        <span class="nav-title">BIG DATA</span>
+    </div>
+    <div class="nav-controls">
+        <button id="prevBtn" class="nav-btn" aria-label="Anterior">‹</button>
+        <span id="slideCounter" class="slide-counter">01 / 15</span>
+        <button id="nextBtn" class="nav-btn" aria-label="Siguiente">›</button>
+    </div>
+    <div class="nav-keys">
+        <kbd>←</kbd> <kbd>→</kbd>
+    </div>
+</nav>
+
+<!-- PROGRESS BAR -->
+<div class="progress-bar">
+    <div id="progressFill" class="progress-fill"></div>
+</div>
+
+<!-- ========== SLIDE 1: PORTADA — WHITE ========== -->
+<section class="slide active slide-white" data-slide="1">
+    <div class="slide-inner slide-split">
+        <div class="split-left">
+            <div class="tag-badge tag-dark">BASE DE DATOS 2 · TP GRUPAL</div>
+            <h1 class="mega-title">
+                BIG<br>
+                <span class="text-orange-inline">DATA</span>
+            </h1>
+            <p class="cover-sub">INTRODUCCIÓN AL PROCESAMIENTO<br>MASIVO DE DATOS Y SU ECOSISTEMA<br>TECNOLÓGICO <i class="fa-solid fa-certificate text-orange-inline"></i></p>
+            <div class="cover-meta-row" style="flex-wrap: wrap;">
+                <div class="meta-pill">
+                    <span class="pill-label">MATERIA</span>
+                    <span class="pill-value">Base de Datos 2</span>
+                </div>
+                <div class="meta-pill">
+                    <span class="pill-label">INTEGRANTES</span>
+                    <span class="pill-value">Santino Cataldo y Sebastián Fernández Ruhl</span>
+                </div>
+            </div>
+        </div>
+        <div class="split-right split-right-dark">
+            <div class="stat-block stat-lime">
+                <span class="stat-big">221 ZB</span>
+                <span class="stat-desc">DATOS PRODUCIDOS POR AÑO A NIVEL GLOBAL</span>
+            </div>
+            <div class="stat-block stat-orange">
+                <span class="stat-big">402M</span>
+                <span class="stat-desc">TERABYTES NUEVOS CADA DÍA</span>
+            </div>
+            <div class="orbit-container">
+                <div class="orbit-ring r1"></div>
+                <div class="orbit-ring r2"></div>
+                <div class="orbit-ring r3"></div>
+                <div class="orbit-core"></div>
+                <div class="orbit-dot d1"></div>
+                <div class="orbit-dot d2"></div>
+                <div class="orbit-dot d3"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SLIDE 2: PRESENTACIÓN DEL TEMA — DARK ========== -->
+<section class="slide slide-dark" data-slide="2">
+    <div class="slide-inner slide-split">
+        <div class="split-left">
+            <div class="tag-badge tag-dark">PRESENTACIÓN DEL TEMA</div>
+            <h2 class="slide-heading heading-dark">¿DE QUÉ HABLAMOS<br>CUANDO HABLAMOS DE<br><span class="text-orange-inline">BIG DATA</span>?</h2>
+            <p class="body-dark">No es solo almacenar archivos. Es la capacidad de capturar el latido del mundo digital en tiempo real y transformarlo en conocimiento accionable.</p>
+        </div>
+        <div class="split-right">
+            <div class="card-stack">
+                <div class="solid-card card-orange" style="--delay: 0.1s;">
+                    <div class="card-emoji"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <div>
+                        <h4>La Explosión Digital</h4>
+                        <p>Cada búsqueda, GPS, latido capturado por un reloj o video subido alimenta un océano de información constante.</p>
+                    </div>
+                </div>
+                <div class="solid-card card-dark" style="--delay: 0.2s;">
+                    <div class="card-emoji"><i class="fa-solid fa-brain"></i></div>
+                    <div>
+                        <h4>El Desafío de Escala</h4>
+                        <p>Los sistemas de almacenamiento comunes colapsan. Necesitamos un nuevo paradigma de ingeniería distribuida.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SLIDE 3: LOS 21 CEROS — WHITE ========== -->
+<section class="slide slide-white" data-slide="3">
+    <div class="slide-inner" style="text-align: center; justify-content: center; display: flex; flex-direction: column; align-items: center; max-width: 1000px; margin: 0 auto;">
+        <div class="tag-badge tag-dark">LA INMENSIDAD DE UN ZETTABYTE</div>
+        <h2 class="slide-heading heading-dark" style="font-size: clamp(1.8rem, 3.2vw, 2.8rem); margin-bottom: 6px; color: var(--dark);">UN ZETTABYTE TIENE <span class="text-orange-inline">21 CEROS</span></h2>
+        
+        <div class="giant-zeros-container">
+            <span class="giant-one">1</span><span class="giant-zeros">.000.000.000.000.000.000.000</span>
+        </div>
+        
+        <p class="body-dark" style="font-size: 1.15rem; max-width: 800px; font-weight: 800; margin-top: 12px; text-transform: uppercase; line-height: 1.4; text-align: center;">
+            Eso equivale a MIL MILLONES DE TERABYTES. Un abismo de información que escapa a la intuición humana y define la era del Big Data.
+        </p>
+    </div>
+</section>
+
+<!-- ========== SLIDE 4: LA ESCALA COMPARATIVA — LIME ========== -->
+<section class="slide slide-lime" data-slide="4">
+    <div class="slide-inner" style="justify-content: center; display: flex; flex-direction: column;">
+        <div class="tag-badge tag-lime">ESCALA COMPARATIVA DE VOLUMEN</div>
+        <h2 class="slide-heading heading-dark" style="font-size: clamp(1.8rem, 3.2vw, 2.5rem); margin-bottom: 12px; color: var(--dark); text-align: center; line-height: 1;">¿CÓMO CRECE LA ESCALA? <span class="text-orange-inline">MULTIPLICADOR x1.024</span></h2>
+        
+        <div class="horizontal-scale-strip">
+            <!-- 1 TB -->
+            <div class="strip-card strip-light" style="--delay: 0.1s;">
+                <div class="sc-header"><i class="fa-solid fa-hard-drive"></i> 1 TB</div>
+                <div class="sc-value">1.024 GB</div>
+                <div class="sc-weight">PESO: HORMIGA</div>
+                <p class="sc-info">250.000 fotos de alta calidad. La capacidad estándar de una computadora personal moderna.</p>
+            </div>
+            
+            <div class="strip-arrow"><i class="fa-solid fa-circle-chevron-right"></i><span class="arrow-mul">x1.024</span></div>
+            
+            <!-- 1 PB -->
+            <div class="strip-card strip-medium" style="--delay: 0.2s;">
+                <div class="sc-header"><i class="fa-solid fa-building"></i> 1 PB</div>
+                <div class="sc-value">1.024 TB</div>
+                <div class="sc-weight">PESO: EDIFICIO</div>
+                <p class="sc-info">Una torre física de discos compactos (CDs) de la altura del Empire State Building.</p>
+            </div>
+            
+            <div class="strip-arrow"><i class="fa-solid fa-circle-chevron-right"></i><span class="arrow-mul">x1.024</span></div>
+            
+            <!-- 1 EB -->
+            <div class="strip-card strip-heavy" style="--delay: 0.3s;">
+                <div class="sc-header"><i class="fa-solid fa-book-open"></i> 1 EB</div>
+                <div class="sc-value">1.024 PB</div>
+                <div class="sc-weight">PESO: HISTORIA</div>
+                <p class="sc-info">Todas las palabras escritas y habladas por los seres humanos en toda la historia de la humanidad.</p>
+            </div>
+            
+            <div class="strip-arrow"><i class="fa-solid fa-circle-chevron-right"></i><span class="arrow-mul">x1.024</span></div>
+            
+            <!-- 1 ZB -->
+            <div class="strip-card strip-planetary" style="--delay: 0.4s;">
+                <div class="sc-header"><i class="fa-solid fa-earth-americas"></i> 1 ZB</div>
+                <div class="sc-value">1.024 EB</div>
+                <div class="sc-weight" style="background: var(--orange); color: var(--white);">PESO: PLANETA</div>
+                <p class="sc-info">221 ZB cruzarían la distancia a la Luna, de ida y vuelta, 28 veces en discos duros de 10cm.</p>
+            </div>
+        </div>
+
+        <!-- FUTURE SCALE NOTE -->
+        <div class="future-scale-note" style="--delay: 0.5s;">
+            <span class="fs-title"><i class="fa-solid fa-rocket text-orange-inline"></i> ¿HAY MEDIDAS MÁS GRANDES? LA ESCALA DEL FUTURO:</span>
+            <div class="fs-pills">
+                <div class="fs-pill" title="1.024 Zettabytes. Toda la información de la humanidad hoy no llega a 1 YB."><strong>1 YB</strong> (Yottabyte) = 1.024 ZB</div>
+                <div class="fs-pill" title="1.024 Yottabytes. Oficializado en 2022 por la CGPM para la escala global futura."><strong>1 RB</strong> (Ronnabyte) = 1.024 YB</div>
+                <div class="fs-pill" title="1.024 Ronnabytes. La unidad más grande existente. Una cifra con 30 ceros."><strong>1 QB</strong> (Quettabyte) = 1.024 RB</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SLIDE 5: ¿POR QUÉ APARECE? — LIME ========== -->
+<section class="slide slide-lime" data-slide="5">
+    <div class="slide-inner slide-split">
+        <div class="split-left">
+            <div class="tag-badge tag-lime">CONTEXTO HISTÓRICO</div>
+            <h2 class="slide-heading heading-dark">¿POR QUÉ<br>APARECE<br><span class="text-dark-accent">BIG DATA</span>?</h2>
+            <p class="body-dark">Durante décadas usamos bases tradicionales (<strong>SQL</strong>) con un único servidor centralizado como motor de todo. Pero la llegada de la <strong>Web 2.0</strong> (redes sociales, celulares y streaming) generó tanta información que el servidor único no la pudo almacenar.</p>
+        </div>
+        <div class="split-right">
+            <div class="card-stack">
+                <!-- 1997 -->
+                <div class="solid-card card-dark" style="--delay: 0.1s;">
+                    <div class="card-emoji" style="font-family: 'Outfit'; font-weight: 900; font-size: 0.85rem; width: 54px; color: var(--dark); background: var(--yellow);">1997</div>
+                    <div>
+                        <h4>El Origen (NASA)</h4>
+                        <p>Michael Cox y David Ellsworth usan por primera vez el término <strong>"Big Data"</strong> para simulaciones aéreas.</p>
+                    </div>
+                </div>
+                <!-- 2001 -->
+                <div class="solid-card card-dark" style="--delay: 0.2s;">
+                    <div class="card-emoji" style="font-family: 'Outfit'; font-weight: 900; font-size: 0.85rem; width: 54px; color: var(--dark); background: var(--cyan);">2001</div>
+                    <div>
+                        <h4>El Paradigma (3V)</h4>
+                        <p>El analista Doug Laney define las bases de las <strong>3V</strong> (Volumen, Velocidad y Variedad), que en 2012 evolucionan a <strong>5V</strong>.</p>
+                    </div>
+                </div>
+                <!-- 2006 -->
+                <div class="solid-card card-orange" style="--delay: 0.3s;">
+                    <div class="card-emoji" style="font-family: 'Outfit'; font-weight: 900; font-size: 0.85rem; width: 54px; color: var(--white); background: var(--dark);">2006</div>
+                    <div>
+                        <h4>La Revolución (Hadoop)</h4>
+                        <p>Nace <strong>Apache Hadoop</strong>, democratizando el almacenamiento y procesamiento distribuido a gran escala.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SLIDE 6: LIMITACIONES — DARK ========== -->
+<section class="slide slide-dark" data-slide="6">
+    <div class="slide-inner">
+        <div class="tag-badge tag-dark">PROBLEMÁTICA</div>
+        <h2 class="slide-heading">LIMITACIONES DEL<br><span class="text-lime">MODELO RELACIONAL</span></h2>
+        <div class="numbered-grid">
+            <div class="num-card">
+                <div class="num-box num-lime">01</div>
+                <h4>Escalabilidad</h4>
+                <p>Vertical vs. Horizontal. Scale-Up es costoso y limitado físicamente; repartir tablas SQL con JOINs destruye el rendimiento.</p>
+            </div>
+            <div class="num-card">
+                <div class="num-box num-orange">02</div>
+                <h4>Estructura de Datos</h4>
+                <p>Rígida vs. Flexible. Las tablas tradicionales exigen esquemas estrictos que chocan con la realidad desordenada de la Web 2.0.</p>
+            </div>
+            <div class="num-card">
+                <div class="num-box num-lime">03</div>
+                <h4>Volumen y Velocidad</h4>
+                <p>Límites de Rendimiento. Los motores clásicos colapsan ante el flujo incesante de datos a procesar en tiempo real.</p>
+            </div>
+            <div class="num-card">
+                <div class="num-box num-orange">04</div>
+                <h4>Modelo Consistencia</h4>
+                <p>ACID vs. BASE. La consistencia estricta de ACID bloquea y ralentiza escrituras masivas en comparación con la flexibilidad eventual de BASE.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SLIDE 7: ¿QUÉ ES? — MIXED ========== -->
+<section class="slide slide-dark" data-slide="7">
+    <div class="slide-inner slide-split">
+        <div class="split-left">
+            <div class="tag-badge tag-dark">DEFINICIÓN</div>
+            <h2 class="slide-heading">¿QUÉ ES<br><span class="text-lime">BIG DATA</span>?</h2>
+            <div class="def-block def-lime">
+                <p>Conjunto de <strong>tecnologías, métodos y arquitecturas</strong> diseñadas para capturar, almacenar, procesar y analizar volúmenes de datos tan grandes y complejos que no pueden manejarse con herramientas tradicionales.</p>
+            </div>
+        </div>
+        <div class="split-right">
+            <div class="def-block def-orange">
+                <p>No se trata solo de "muchos datos". Big Data implica una <strong>transformación paradigmática</strong>: procesamiento a gran escala, respuesta a alta velocidad, diversidad de formatos, cómputo distribuido y la capacidad de <strong>extraer valor e insights</strong>.</p>
+            </div>
+            <div class="pill-row">
+                <span class="pill pill-lime">Procesamiento a Escala</span>
+                <span class="pill pill-orange">Alta Velocidad</span>
+                <span class="pill pill-lime">Diversidad</span>
+                <span class="pill pill-orange">Cómputo Distribuido</span>
+                <span class="pill pill-lime">Extracción de Valor</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SLIDE 8: LAS 5 V — LIME ========== -->
+<section class="slide slide-lime" data-slide="8">
+    <div class="slide-inner">
+        <div class="tag-badge tag-lime">CARACTERÍSTICAS FUNDAMENTALES</div>
+        <h2 class="slide-heading heading-dark">LAS <span class="text-dark-accent">5 V</span> DEL BIG DATA</h2>
+        <div class="v-strip">
+            <div class="v-item">
+                <div class="v-head v-head-1">
+                    <span class="v-big">V</span><span class="v-rest">olumen</span>
+                </div>
+                <p>Cantidad masiva: TB → PB → EB → ZB. Excede la capacidad de sistemas tradicionales.</p>
+                <div class="v-metric"><span>1 ZB</span> = 1 billón de GB</div>
+            </div>
+            <div class="v-item">
+                <div class="v-head v-head-2">
+                    <span class="v-big">V</span><span class="v-rest">elocidad</span>
+                </div>
+                <p>Generación y procesamiento en tiempo real. Crucial para detección de fraudes.</p>
+                <div class="v-metric"><span>3,81 PB</span> procesados / segundo</div>
+            </div>
+            <div class="v-item">
+                <div class="v-head v-head-3">
+                    <span class="v-big">V</span><span class="v-rest">ariedad</span>
+                </div>
+                <p>Estructurados, semi-estructurados y no estructurados de múltiples fuentes.</p>
+                <div class="v-metric"><span>80%</span> datos no estructurados</div>
+            </div>
+            <div class="v-item">
+                <div class="v-head v-head-4">
+                    <span class="v-big">V</span><span class="v-rest">eracidad</span>
+                </div>
+                <p>Calidad, exactitud y fiabilidad. Limpieza, validación y gobernanza de datos.</p>
+                <div class="v-metric"><span>27%</span> datos con errores*</div>
+            </div>
+            <div class="v-item">
+                <div class="v-head v-head-5">
+                    <span class="v-big">V</span><span class="v-rest">alor</span>
+                </div>
+                <p>Transformar datos crudos en conocimiento accionable y ventaja competitiva.</p>
+                <div class="v-metric"><span>$274B</span> mercado 2026*</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SLIDE 9: TIPOS DE DATOS — DARK ========== -->
+<section class="slide slide-dark" data-slide="9">
+    <div class="slide-inner">
+        <div class="tag-badge tag-dark">VARIEDAD EN DETALLE</div>
+        <h2 class="slide-heading">TIPOS DE <span class="text-lime">DATOS</span></h2>
+        <div class="type-cols">
+            <div class="type-col">
+                <div class="type-top type-top-lime">
+                    <span class="type-icon-big"><i class="fa-solid fa-table"></i></span>
+                    <h3>Estructurados</h3>
+                </div>
+                <div class="type-body">
+                    <p>Esquema predefinido y fijo. Tablas con filas y columnas. Fáciles de buscar y analizar.</p>
+                    <div class="type-tags">
+                        <span>SQL</span><span>Excel</span><span>ERP</span><span>CRM</span>
+                    </div>
+                    <div class="bar-row">
+                        <div class="bar-track"><div class="bar-fill bar-lime" style="width:20%"></div></div>
+                        <span class="bar-label">~20%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="type-col">
+                <div class="type-top type-top-orange">
+                    <span class="type-icon-big"><i class="fa-solid fa-code"></i></span>
+                    <h3>Semi-estructurados</h3>
+                </div>
+                <div class="type-body">
+                    <p>Alguna estructura, sin esquema rígido. Etiquetas o marcadores para organizar.</p>
+                    <div class="type-tags">
+                        <span>JSON</span><span>XML</span><span>Logs</span><span>Emails</span>
+                    </div>
+                    <div class="bar-row">
+                        <div class="bar-track"><div class="bar-fill bar-orange" style="width:10%"></div></div>
+                        <span class="bar-label">~10%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="type-col">
+                <div class="type-top type-top-cyan">
+                    <span class="type-icon-big"><i class="fa-solid fa-photo-film"></i></span>
+                    <h3>No Estructurados</h3>
+                </div>
+                <div class="type-body">
+                    <p>Sin formato predefinido. La mayor parte de los datos generados hoy en día.</p>
+                    <div class="type-tags">
+                        <span>Imágenes</span><span>Video</span><span>Audio</span><span>Texto</span>
+                    </div>
+                    <div class="bar-row">
+                        <div class="bar-track"><div class="bar-fill bar-cyan" style="width:70%"></div></div>
+                        <span class="bar-label">~70%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SLIDE 10: RDBMS vs BIG DATA — LIME ========== -->
+<section class="slide slide-lime" data-slide="10">
+    <div class="slide-inner">
+        <div class="tag-badge tag-lime">COMPARATIVA</div>
+        <h2 class="slide-heading heading-dark"><span class="text-dark-accent">RDBMS</span> vs. BIG DATA</h2>
+        <div class="comp-table">
+            <div class="comp-row comp-header-row">
+                <div class="comp-cell comp-label-cell">Característica</div>
+                <div class="comp-cell comp-dark-cell">RDBMS Tradicional</div>
+                <div class="comp-cell comp-orange-cell">Big Data / NoSQL</div>
+            </div>
+            <div class="comp-row">
+                <div class="comp-cell comp-label-cell">Escalabilidad</div>
+                <div class="comp-cell comp-light-cell">Vertical (Scale-Up): más hardware en 1 servidor</div>
+                <div class="comp-cell comp-light-cell">Horizontal (Scale-Out): múltiples nodos en paralelo</div>
+            </div>
+            <div class="comp-row">
+                <div class="comp-cell comp-label-cell">Datos</div>
+                <div class="comp-cell comp-light-cell">Estructurados exclusivamente, esquema rígido</div>
+                <div class="comp-cell comp-light-cell">Estructurados, semi y no estructurados</div>
+            </div>
+            <div class="comp-row">
+                <div class="comp-cell comp-label-cell">Tamaño</div>
+                <div class="comp-cell comp-light-cell">GB a pocos TB</div>
+                <div class="comp-cell comp-light-cell">TB, PB hasta EB</div>
+            </div>
+            <div class="comp-row">
+                <div class="comp-cell comp-label-cell">Procesamiento</div>
+                <div class="comp-cell comp-light-cell">Centralizado en un motor local</div>
+                <div class="comp-cell comp-light-cell">Distribuido entre miles de nodos</div>
+            </div>
+            <div class="comp-row">
+                <div class="comp-cell comp-label-cell">Esquema</div>
+                <div class="comp-cell comp-light-cell">Schema-on-Write: diseño previo</div>
+                <div class="comp-cell comp-light-cell">Schema-on-Read: datos crudos</div>
+            </div>
+            <div class="comp-row">
+                <div class="comp-cell comp-label-cell">Consistencia</div>
+                <div class="comp-cell comp-light-cell">ACID estricto</div>
+                <div class="comp-cell comp-light-cell">BASE (Eventually Consistent)</div>
+            </div>
+            <div class="comp-row">
+                <div class="comp-cell comp-label-cell">Costo</div>
+                <div class="comp-cell comp-light-cell">Hardware especializado, licencias caras</div>
+                <div class="comp-cell comp-light-cell">Hardware commodity, open-source</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SLIDE 11: FUENTES — DARK ========== -->
+<section class="slide slide-dark" data-slide="11">
+    <div class="slide-inner">
+        <div class="tag-badge tag-dark">ORIGEN DE LOS DATOS</div>
+        <h2 class="slide-heading">FUENTES DEL <span class="text-lime">BIG DATA</span></h2>
+        <div class="source-cols">
+            <div class="source-block">
+                <div class="source-head source-head-lime">
+                    <span class="source-emoji"><i class="fa-solid fa-user"></i></span>
+                    <h3>Generados por Humanos</h3>
+                </div>
+                <div class="source-body">
+                    <p>Publicaciones en redes sociales, videos, clics, búsquedas, e-mails y fotografías generadas por la interacción consciente con entornos digitales.</p>
+                    <div class="source-stats">
+                        <div class="ss"><span>Facebook</span><strong>4 PB/día</strong></div>
+                        <div class="ss"><span>Twitter/X</span><strong>500M tweets/día</strong></div>
+                    </div>
+                </div>
+            </div>
+            <div class="source-block">
+                <div class="source-head source-head-orange">
+                    <span class="source-emoji"><i class="fa-solid fa-robot"></i></span>
+                    <h3>Máquinas / IoT</h3>
+                </div>
+                <div class="source-body">
+                    <p>Sensores, wearables, GPS, cámaras de vigilancia y dispositivos que transmiten datos de forma autónoma las 24 horas.</p>
+                    <div class="source-stats">
+                        <div class="ss"><span>Dispositivos IoT</span><strong>75B en 2025</strong></div>
+                        <div class="ss"><span>Auto conectado</span><strong>25 GB/hora</strong></div>
+                    </div>
+                </div>
+            </div>
+            <div class="source-block">
+                <div class="source-head source-head-cyan">
+                    <span class="source-emoji"><i class="fa-solid fa-gears"></i></span>
+                    <h3>Logs / Sistemas</h3>
+                </div>
+                <div class="source-body">
+                    <p>Archivos generados automáticamente por servidores, bases de datos y sistemas operativos para registrar eventos y métricas.</p>
+                    <div class="source-stats">
+                        <div class="ss"><span>Web servers</span><strong>~1 TB logs/día</strong></div>
+                        <div class="ss"><span>Telemetría</span><strong>24/7 continuo</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SLIDE 12: TECNOLOGÍAS — LIME ========== -->
+<section class="slide slide-lime" data-slide="12">
+    <div class="slide-inner">
+        <div class="tag-badge tag-lime">ECOSISTEMA TECNOLÓGICO · EXTRA</div>
+        <h2 class="slide-heading heading-dark">TECNOLOGÍAS <span class="text-dark-accent">CLAVE</span></h2>
+        <div class="tech-banner">
+            <div class="tech-banner-icon"><i class="fa-solid fa-cubes"></i></div>
+            <div class="tech-banner-text">
+                <h3>Apache Hadoop</h3>
+                <p>Framework open-source: almacenamiento distribuido (HDFS) + procesamiento paralelo (MapReduce). Bloques de 128 MB replicados en múltiples nodos.</p>
+            </div>
+            <div class="tech-banner-pills">
+                <span class="tech-pill">HDFS</span>
+                <span class="tech-pill">MapReduce</span>
+                <span class="tech-pill">YARN</span>
+            </div>
+        </div>
+        <div class="tech-grid-sm">
+            <div class="tech-sm-card card-dark">
+                <span class="tech-sm-icon"><i class="fa-solid fa-bolt-lightning"></i></span>
+                <h4>Apache Spark</h4>
+                <p>In-memory, hasta <strong>100x más rápido</strong> que MapReduce. Batch, streaming, ML y grafos.</p>
+            </div>
+            <div class="tech-sm-card card-dark">
+                <span class="tech-sm-icon"><i class="fa-solid fa-arrows-rotate"></i></span>
+                <h4>Apache Kafka</h4>
+                <p>Streaming distribuido para ingestión en tiempo real. Millones de eventos por segundo.</p>
+            </div>
+            <div class="tech-sm-card card-dark">
+                <span class="tech-sm-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                <h4>Apache Hive</h4>
+                <p>Data warehouse sobre Hadoop. Consultas SQL (HiveQL) sobre datos en HDFS.</p>
+            </div>
+            <div class="tech-sm-card card-dark">
+                <span class="tech-sm-icon"><i class="fa-solid fa-cloud"></i></span>
+                <h4>Cloud Big Data</h4>
+                <p>AWS EMR, Google BigQuery, Azure HDInsight. Escalabilidad elástica bajo demanda.</p>
+            </div>
+            <div class="tech-sm-card card-dark">
+                <span class="tech-sm-icon"><i class="fa-solid fa-chart-line"></i></span>
+                <h4>Machine Learning</h4>
+                <p>TensorFlow, PyTorch, Spark MLlib. Big Data como combustible para IA predictiva.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SLIDE 13: PROCESAMIENTO DISTRIBUIDO — DARK ========== -->
+<section class="slide slide-dark" data-slide="13">
+    <div class="slide-inner slide-split">
+        <div class="split-left">
+            <div class="tag-badge tag-dark">ARQUITECTURA · EXTRA</div>
+            <h2 class="slide-heading">PROCESAMIENTO<br><span class="text-lime">DISTRIBUIDO</span></h2>
+            <div class="step-flow">
+                <div class="step-item">
+                    <div class="step-num step-lime">1</div>
+                    <div><h4>SPLIT</h4><p>Los datos se dividen en fragmentos distribuidos entre nodos</p></div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num step-orange">2</div>
+                    <div><h4>MAP</h4><p>Cada nodo procesa su fragmento de forma independiente</p></div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num step-lime">3</div>
+                    <div><h4>SHUFFLE</h4><p>Los resultados intermedios se agrupan por clave</p></div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num step-orange">4</div>
+                    <div><h4>REDUCE</h4><p>Se combinan los valores para producir el resultado final</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="split-right">
+            <div class="hdfs-panel">
+                <h3>HDFS <span class="text-orange-inline">(Hadoop Distributed File System)</span></h3>
+                <div class="hdfs-list">
+                    <div class="hdfs-row">
+                        <span class="hdfs-icon"><i class="fa-solid fa-box"></i></span>
+                        <div><strong>Bloques de 128 MB</strong><p>Cada archivo se divide en bloques distribuidos en el clúster</p></div>
+                    </div>
+                    <div class="hdfs-row">
+                        <span class="hdfs-icon"><i class="fa-solid fa-arrows-rotate"></i></span>
+                        <div><strong>Replicación x3</strong><p>Cada bloque se replica en 3 nodos diferentes para tolerancia a fallos</p></div>
+                    </div>
+                    <div class="hdfs-row">
+                        <span class="hdfs-icon"><i class="fa-solid fa-crown"></i></span>
+                        <div><strong>NameNode + DataNodes</strong><p>Arquitectura maestro-esclavo para metadatos y almacenamiento</p></div>
+                    </div>
+                    <div class="hdfs-row">
+                        <span class="hdfs-icon"><i class="fa-solid fa-location-dot"></i></span>
+                        <div><strong>Data Locality</strong><p>El procesamiento viaja al dato, no al revés</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SLIDE 14: ESCALA + CASOS — LIME ========== -->
+<section class="slide slide-lime" data-slide="14">
+    <div class="slide-inner slide-split">
+        <div class="split-left">
+            <div class="tag-badge tag-lime">IMPACTO REAL · EXTRA</div>
+            <h2 class="slide-heading heading-dark">LA ESCALA REAL<br>Y <span class="text-dark-accent">CASOS DE USO</span></h2>
+            <div class="scale-cards">
+                <div class="scale-card">
+                    <span class="sc-num">221 ZB</span>
+                    <span class="sc-label">Producción anual global</span>
+                </div>
+                <div class="scale-card">
+                    <span class="sc-num">720K hs</span>
+                    <span class="sc-label">Video subido a YouTube / día</span>
+                </div>
+                <div class="scale-card">
+                    <span class="sc-num">3.500M</span>
+                    <span class="sc-label">Búsquedas en Google / día</span>
+                </div>
+            </div>
+            <div class="quote-block">
+                "La arquitectura distribuida no es una elección de diseño — <strong>es una necesidad de ingeniería</strong>."
+            </div>
+        </div>
+        <div class="split-right">
+            <div class="use-case-list">
+                <div class="uc-item">
+                    <span class="uc-emoji"><i class="fa-solid fa-house-chimney-medical"></i></span>
+                    <div><h4>Salud</h4><p>Análisis genómico, predicción epidemiológica y telemetría de wearables en tiempo real</p></div>
+                </div>
+                <div class="uc-item">
+                    <span class="uc-emoji"><i class="fa-solid fa-landmark"></i></span>
+                    <div><h4>Finanzas</h4><p>Detección de fraude en tiempo real, trading algorítmico, scoring crediticio</p></div>
+                </div>
+                <div class="uc-item">
+                    <span class="uc-emoji"><i class="fa-solid fa-cart-shopping"></i></span>
+                    <div><h4>E-Commerce</h4><p>Recomendaciones personalizadas (Amazon, Netflix), análisis de comportamiento</p></div>
+                </div>
+                <div class="uc-item">
+                    <span class="uc-emoji"><i class="fa-solid fa-city"></i></span>
+                    <div><h4>Smart Cities</h4><p>Gestión de tráfico inteligente, monitoreo ambiental, servicios públicos</p></div>
+                </div>
+                <div class="uc-item">
+                    <span class="uc-emoji"><i class="fa-solid fa-seedling"></i></span>
+                    <div><h4>Agro-Tech</h4><p>Agricultura de precisión con IoT, predicción climática, optimización</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SLIDE 15: CIERRE — MIXED ========== -->
+<section class="slide slide-dark" data-slide="15">
+    <div class="slide-inner slide-split closing-split">
+        <div class="split-left closing-left">
+            <div class="tag-badge tag-dark">CONCLUSIÓN</div>
+            <h2 class="closing-mega">BIG DATA<br>NO ES EL<br><span class="text-lime">FUTURO</span>,<br>ES EL<br><span class="text-orange-inline">PRESENTE</span></h2>
+            <div class="takeaway-list">
+                <div class="tk"><span class="tk-n">01</span><p>Los RDBMS no desaparecen, pero Big Data resuelve lo que ellos no pueden</p></div>
+                <div class="tk"><span class="tk-n">02</span><p>Las 5 V definen el paradigma: Volumen, Velocidad, Variedad, Veracidad, Valor</p></div>
+                <div class="tk"><span class="tk-n">03</span><p>Hadoop/Spark es la base del procesamiento distribuido moderno</p></div>
+                <div class="tk"><span class="tk-n">04</span><p>El verdadero poder está en extraer valor: datos sin análisis son solo ruido</p></div>
+                <div class="tk"><span class="tk-n">05</span><p>La nube y la IA democratizan el acceso a herramientas de Big Data</p></div>
+            </div>
+        </div>
+        <div class="split-right closing-right-lime">
+            <div class="thanks-box">
+                <h2>¡GRACIAS!</h2>
+                <p>Base de Datos 2 · 2026</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

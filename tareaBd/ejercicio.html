@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape Room: Pánico en el Clúster — Big Data</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="exercise-body">
+
+    <!-- ESCAPE ROOM HEADER -->
+    <div class="escape-header" id="escapeHeader">
+        <div class="escape-alert-badge"><i class="fa-solid fa-triangle-exclamation"></i> ALERTA: SISTEMA EN CRISIS</div>
+        <h1>PÁNICO EN EL <span>CLÚSTER</span></h1>
+        <p>Simulador de Hackeo y Orquestación de Big Data — Rescatando a VitalData</p>
+    </div>
+
+    <!-- ROOM PROGRESS TRACKER -->
+    <div class="escape-tracker" id="escapeTracker">
+        <div id="step1" class="escape-step active">
+            <span class="step-circle">1</span>
+            NameNode
+        </div>
+        <div id="step2" class="escape-step">
+            <span class="step-circle">2</span>
+            Tubería Kafka
+        </div>
+        <div id="step3" class="escape-step">
+            <span class="step-circle">3</span>
+            Desanonimización
+        </div>
+    </div>
+
+    <div class="container" style="max-width: 900px; margin: 0 auto;">
+
+        <!-- ==================== ROOM 1: TERMINAL NAMENODE ==================== -->
+        <div id="room1Container" class="escape-room-container active-room">
+            <div class="section-header">
+                <div class="section-num section-num-lime">1</div>
+                <h2>Nivel 1: <span>Terminal del NameNode Maestro</span></h2>
+            </div>
+            
+            <div class="room-intro">
+                El sistema de archivos distribuido de HDFS se encuentra desincronizado. Para re-establecer el NameNode y recuperar el control del mapeo de bloques, deben descifrar el código de seguridad resolviendo el cálculo de escala binaria provisto por la terminal.
+            </div>
+
+            <div class="room-split">
+                <div class="room-split-left">
+                    <div class="terminal-box">
+                        <span style="color: var(--orange); font-weight: 800;">[SYS-TERMINAL v2.026]</span><br>
+                        <span>[NameNode Status]: BLOCKED — partición de metadatos corrupta.</span><br>
+                        <span>[Clue]: Reporto un archivo clínico corrupto de <strong>8.192 Terabytes</strong>.</span><br>
+                        <span>[Clue]: Para mover este bloque a una partición saludable, debemos reservar espacio de direccionamiento exacto en <strong>Petabytes</strong>.</span><br><br>
+                        <span style="color: var(--yellow);">➔ TAREA: Calculen a cuántos Petabytes (PB) equivalen los 8.192 Terabytes en la escala binaria académica de Base de Datos 2 (multiplicador x1.024) e ingresen el código numérico en el teclado de la derecha.</span>
+                    </div>
+                </div>
+
+                <div class="room-split-right">
+                    <div class="keypad-wrapper">
+                        <div id="keypadMonitor" class="keypad-monitor"></div>
+                        <div class="keypad-grid">
+                            <button class="keypad-btn" onclick="pressKey('1')">1</button>
+                            <button class="keypad-btn" onclick="pressKey('2')">2</button>
+                            <button class="keypad-btn" onclick="pressKey('3')">3</button>
+                            <button class="keypad-btn" onclick="pressKey('4')">4</button>
+                            <button class="keypad-btn" onclick="pressKey('5')">5</button>
+                            <button class="keypad-btn" onclick="pressKey('6')">6</button>
+                            <button class="keypad-btn" onclick="pressKey('7')">7</button>
+                            <button class="keypad-btn" onclick="pressKey('8')">8</button>
+                            <button class="keypad-btn" onclick="pressKey('9')">9</button>
+                            <button class="keypad-btn btn-clear" onclick="clearKeypad()"><i class="fa-solid fa-rotate-left"></i></button>
+                            <button class="keypad-btn" onclick="pressKey('0')">0</button>
+                            <button class="keypad-btn btn-clear" onclick="backspaceKeypad()"><i class="fa-solid fa-delete-left"></i></button>
+                            <button class="keypad-btn btn-enter" onclick="checkRoom1()">Enviar Código</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="room1Feedback" class="room-feedback"></div>
+        </div>
+
+        <!-- ==================== ROOM 2: TUBERÍA KAFKA (MAPREDUCE SEQUENCE) ==================== -->
+        <div id="room2Container" class="escape-room-container">
+            <div class="section-header">
+                <div class="section-num section-num-orange">2</div>
+                <h2>Nivel 2: <span>Sincronizador de la Tubería Kafka</span></h2>
+            </div>
+            
+            <div class="room-intro">
+                ¡NameNode estabilizado! Sin embargo, la tubería de ingesta en tiempo real de Apache Kafka se encuentra desbordada. El pipeline MapReduce que procesa los registros de salud está desordenado y las fases están colapsando. Ordenen las fases del procesamiento paralelo en la secuencia lógica correcta de ingeniería para abrir el canal.
+            </div>
+
+            <div class="sequencer-container" id="sequencerList">
+                <!-- Tarjeta Map (Desordenada al inicio) -->
+                <div class="sequencer-card" data-stage="map" id="card-map">
+                    <div class="sc-info-block">
+                        <div class="sc-num-badge"><i class="fa-solid fa-gears"></i></div>
+                        <div class="sc-text-block">
+                            <h3>Fase: MAP</h3>
+                            <p>Cada nodo del clúster ejecuta localmente la lógica sobre su fragmento físico (Data Locality) produciendo pares clave-valor intermedios.</p>
+                        </div>
+                    </div>
+                    <div class="sc-action-buttons">
+                        <button class="sc-move-btn" onclick="moveCardUp('card-map')"><i class="fa-solid fa-chevron-up"></i></button>
+                        <button class="sc-move-btn" onclick="moveCardDown('card-map')"><i class="fa-solid fa-chevron-down"></i></button>
+                    </div>
+                </div>
+
+                <!-- Tarjeta Reduce (Desordenada al inicio) -->
+                <div class="sequencer-card" data-stage="reduce" id="card-reduce">
+                    <div class="sc-info-block">
+                        <div class="sc-num-badge"><i class="fa-solid fa-box-archive"></i></div>
+                        <div class="sc-text-block">
+                            <h3>Fase: REDUCE</h3>
+                            <p>Se consolidan, combinan y reducen los valores de cada clave agrupada para producir el archivo consolidado de salida final en HDFS.</p>
+                        </div>
+                    </div>
+                    <div class="sc-action-buttons">
+                        <button class="sc-move-btn" onclick="moveCardUp('card-reduce')"><i class="fa-solid fa-chevron-up"></i></button>
+                        <button class="sc-move-btn" onclick="moveCardDown('card-reduce')"><i class="fa-solid fa-chevron-down"></i></button>
+                    </div>
+                </div>
+
+                <!-- Tarjeta Split (Desordenada al inicio) -->
+                <div class="sequencer-card" data-stage="split" id="card-split">
+                    <div class="sc-info-block">
+                        <div class="sc-num-badge"><i class="fa-solid fa-scissors"></i></div>
+                        <div class="sc-text-block">
+                            <h3>Fase: SPLIT</h3>
+                            <p>El framework Hadoop distribuye y divide los bloques físicos de 128 MB a lo largo del clúster de servidores commodity.</p>
+                        </div>
+                    </div>
+                    <div class="sc-action-buttons">
+                        <button class="sc-move-btn" onclick="moveCardUp('card-split')"><i class="fa-solid fa-chevron-up"></i></button>
+                        <button class="sc-move-btn" onclick="moveCardDown('card-split')"><i class="fa-solid fa-chevron-down"></i></button>
+                    </div>
+                </div>
+
+                <!-- Tarjeta Shuffle (Desordenada al inicio) -->
+                <div class="sequencer-card" data-stage="shuffle" id="card-shuffle">
+                    <div class="sc-info-block">
+                        <div class="sc-num-badge"><i class="fa-solid fa-network-wired"></i></div>
+                        <div class="sc-text-block">
+                            <h3>Fase: SHUFFLE & SORT</h3>
+                            <p>Los pares clave-valor intermedios se agrupan por clave a través de la red local física, enviándose al nodo de reducción correspondiente.</p>
+                        </div>
+                    </div>
+                    <div class="sc-action-buttons">
+                        <button class="sc-move-btn" onclick="moveCardUp('card-shuffle')"><i class="fa-solid fa-chevron-up"></i></button>
+                        <button class="sc-move-btn" onclick="moveCardDown('card-shuffle')"><i class="fa-solid fa-chevron-down"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <button id="sequencerCheckBtn" class="room-check-btn" onclick="checkRoom2()">Estabilizar Tubería Kafka</button>
+            <div id="room2Feedback" class="room-feedback"></div>
+        </div>
+
+        <!-- ==================== ROOM 3: CONSOLA CRIPTOGRÁFICA (DEBATE ÉTICO) ==================== -->
+        <div id="room3Container" class="escape-room-container">
+            <div class="section-header">
+                <div class="section-num section-num-cyan">3</div>
+                <h2>Nivel 3: <span>Consola de Desanonimización y Llave Ética</span></h2>
+            </div>
+            
+            <div class="room-intro">
+                ¡Tubería de datos estabilizada! El clúster está a salvo. Sin embargo, las bases de datos clínicas de VitalData han sido bloqueadas por una contingencia de ciberseguridad. Para apagar el protocolo de autodestrucción, el equipo de DBAs de guardia debe identificar al usuario sospechoso cruzando los registros y extraer la Clave Maestra.
+            </div>
+
+            <div class="debate-case" style="margin-bottom: 20px; border-width: 3px; padding: 16px;">
+                <span style="font-family: 'Outfit'; font-weight: 900; color: var(--orange); font-size: 0.85rem; letter-spacing: 0.05em; display: block; margin-bottom: 6px;">Pistas del Servidor de Seguridad:</span>
+                <p style="font-size: 0.88rem; font-weight: 700; line-height: 1.45;"><i class="fa-solid fa-location-crosshairs text-orange-inline"></i> <strong>Pista A:</strong> El usuario re-identificado registró actividad física y telemetría de geolocalización dentro del <strong>Hospital Central a las 10:00 AM</strong>.<br>
+                <i class="fa-solid fa-heart-pulse text-orange-inline"></i> <strong>Pista B:</strong> Su frecuencia cardíaca reportó un pico anómalo de <strong>130 BPM</strong> en ese exacto instante.</p>
+            </div>
+
+            <div class="ethical-dashboard">
+                <!-- Sidebar de Perfiles Anonimizados -->
+                <div class="profile-sidebar">
+                    <div class="profile-col-label" style="font-family: 'Outfit'; font-weight: 900; font-size: 0.8rem; letter-spacing: 0.05em; color: var(--text-dark-sub); text-transform: uppercase;">Perfiles en la Base de Datos</div>
+                    
+                    <div class="profile-card" id="prof1" onclick="selectProfile(1)">
+                        <div class="pc-avatar"><i class="fa-solid fa-user-secret"></i></div>
+                        <div class="pc-meta">
+                            <h4>Perfil #819</h4>
+                            <span>Anonimizado</span>
+                        </div>
+                    </div>
+
+                    <div class="profile-card" id="prof2" onclick="selectProfile(2)">
+                        <div class="pc-avatar"><i class="fa-solid fa-user-injured"></i></div>
+                        <div class="pc-meta">
+                            <h4>Perfil #221</h4>
+                            <span>Anonimizado</span>
+                        </div>
+                    </div>
+
+                    <div class="profile-card" id="prof3" onclick="selectProfile(3)">
+                        <div class="pc-avatar"><i class="fa-solid fa-user-nurse"></i></div>
+                        <div class="pc-meta">
+                            <h4>Perfil #402</h4>
+                            <span>Anonimizado</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panel de Detalles del Decodificador -->
+                <div class="profile-details-panel">
+                    <div id="pdpPlaceholder" class="pdp-placeholder">
+                        <i class="fa-solid fa-server" style="font-size: 2.5rem; color: var(--text-muted); margin-bottom: 12px; display: block;"></i>
+                        Seleccioná un perfil clínico de la izquierda para procesarlo en el decodificador biométrico...
+                    </div>
+                    <div id="pdpContent" class="pdp-content" style="display: none;">
+                        <h3 id="pdpTitle">Perfil #000</h3>
+                        <div class="pdp-stat-row"><span>Ubicación GPS (10:00 AM)</span><strong id="pdpGPS">-</strong></div>
+                        <div class="pdp-stat-row"><span>Frecuencia Cardíaca</span><strong id="pdpHR">-</strong></div>
+                        <div class="pdp-stat-row"><span>Historial Clínico</span><strong id="pdpHistory">-</strong></div>
+                        <div class="pdp-stat-row"><span>Tipo de Registro</span><strong id="pdpType">-</strong></div>
+                        <!-- Botón para ejecutar la desanonimización -->
+                        <button id="deanonBtn" class="room-check-btn" style="margin-top: 15px;" onclick="deanonProfile()">Cruzar Metadatos y Desanonimizar</button>
+                        
+                        <!-- Contenedor de carga/progreso -->
+                        <div id="deanonLoading" class="terminal-box" style="display: none; margin-top: 15px; color: var(--yellow); text-align: center; border-color: var(--yellow); box-shadow: inset 0 0 6px var(--yellow);">
+                            <i class="fa-solid fa-spinner fa-spin"></i> EJECUTANDO CONSULTA DE CRUCE EN EL CLÚSTER (GPS + IoT)...
+                        </div>
+
+                        <!-- Panel de Alerta Criptográfica Revelado (Solo Perfil 2) -->
+                        <div id="pdpAlertBox" class="pdp-deanon-alert" style="display: none;">
+                            <i class="fa-solid fa-triangle-exclamation" style="color: var(--orange); font-size: 1.1rem; float: left; margin-right: 10px;"></i>
+                            <strong>[CRÍTICO - DESANONIMIZADO]:</strong> Al cruzar los registros GPS y el sensor cardíaco, la anonimización de Big Data se volvió 100% reversible. El paciente decodificado es <strong>Carlos Menem</strong>.<br><br>
+                            <strong>[DBA DEBATE ÉTICO]:</strong> ¿Es ético vender datos supuestamente anónimos si su cruce con telemetría permite re-identificar al 87% de los usuarios? Como DBA, tenés la responsabilidad civil de reportar esta fuga y exigir Privacidad Diferencial.<br><br>
+                            <span style="color: var(--orange); font-weight: 800;">LLAVE MAESTRA REVELADA:</span>
+                            <div class="pdp-code-box">DBA_ETICA_2026</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Consola de Entrada de Clave Maestra -->
+            <div class="ethics-console-wrapper">
+                <input type="text" id="masterEscapeKeyInput" placeholder="INGRESE LA LLAVE MAESTRA CRIPTOGRÁFICA..." autocomplete="off">
+                <button onclick="checkRoom3()">Desactivar Bloqueo</button>
+            </div>
+            
+            <div id="room3Feedback" class="room-feedback"></div>
+        </div>
+
+        <!-- ==================== ROOM SUCCESS ==================== -->
+        <div id="roomSuccess" class="escape-success-card">
+            <div class="esc-trophy"><i class="fa-solid fa-trophy"></i></div>
+            <h2>¡CLÚSTER EXCLUSIVO SALVADO!</h2>
+            <p>El equipo de ingenieros de bases de datos ha estabilizado el NameNode, re-ordenado la tubería de procesamiento HDFS y descifrado de forma segura las implicancias de privacidad del caso VitalData.</p>
+            <div style="font-family: 'Outfit'; font-weight: 900; font-size: 1.5rem; background: var(--lime); border: 3px solid var(--dark); display: inline-block; padding: 8px 24px; box-shadow: 4px 4px 0px var(--dark); border-radius: 8px; margin-top: 10px; text-transform: uppercase;">
+                Escape Completado con Éxito 🎉
+            </div>
+        </div>
+
+        <div class="progress-panel-sm" id="progressPanelSm">
+            Progreso del Escape: <span id="progressCompletedCount">0</span> de 3 Niveles Completados
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
